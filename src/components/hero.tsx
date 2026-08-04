@@ -1,0 +1,23 @@
+import { SectionLabel } from "@/components/section-label";
+
+type HeroProps = {
+  eyebrow: string;
+  title: string;
+  image: string;
+  copy?: string;
+};
+
+export function Hero({ eyebrow, title, image, copy }: HeroProps) {
+  return (
+    <section className="site-legacy-hero relative grid min-h-screen place-items-center overflow-hidden bg-cover bg-center px-[max(5vw,40px)] py-28 text-center text-white" style={{ backgroundImage: `url("${image}")` }}>
+      <div className="absolute inset-0 bg-black/35" />
+      <div className="relative z-10 mx-auto w-full max-w-[900px]">
+        <SectionLabel index="00" label={eyebrow} light className="mb-5" />
+        <h1 className="mx-auto max-w-3xl whitespace-pre-line text-[clamp(72px,7vw,80px)] font-bold leading-[1.05] tracking-[-0.035em]">
+          {title}
+        </h1>
+        {copy ? <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-white/78">{copy}</p> : null}
+      </div>
+    </section>
+  );
+}
