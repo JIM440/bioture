@@ -138,29 +138,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="bg-emerald-950 px-5 py-16 text-white md:px-8 md:py-24">
-          <div className="mx-auto grid max-w-[1500px] gap-12 lg:grid-cols-[0.85fr_1fr]">
-            <div>
-              <SectionLabel index="03" label="BioTure at a glance" light />
-              <h2 className="mt-5 text-[clamp(34px,4vw,64px)] font-medium leading-[1.08] tracking-[-0.02em]">Numbers that tell a growing story.</h2>
-              <p className="mt-5 text-white/68">Portfolio figures for BioTure&apos;s group structure and growth territories.</p>
-            </div>
-            <div className="divide-y divide-white/15 border-y border-white/15">
-              {[
-                ["8", "Specialized businesses across the group"],
-                ["20+", "Business divisions and service areas"],
-                ["5+", "Priority markets and growth territories"],
-              ].map(([number, label]) => (
-                <div key={label} className="grid gap-4 py-8 md:grid-cols-[160px_1fr] md:items-center">
-                  <strong className="text-6xl font-bold tracking-[-0.03em]">{number}</strong>
-                  <span className="font-mono text-xs uppercase tracking-[0.15em] text-white/65">{label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="purpose" className="grid min-h-[700px] text-white lg:grid-cols-[1.05fr_0.95fr]" style={{ background: "var(--green)" }}>
+        <section className="hidden" aria-hidden="true" style={{ background: "var(--green)" }}>
           <div
             className="min-h-[500px] bg-cover bg-center"
             style={{ backgroundImage: "url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1400&q=88')" }}
@@ -202,6 +180,25 @@ export default function Home() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section id="purpose" className="grid min-h-[700px] text-white lg:grid-cols-[1.05fr_0.95fr]" style={{ background: "var(--green)" }}>
+          <div
+            className="min-h-[500px] bg-cover bg-center"
+            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1400&q=88')" }}
+          />
+          <div className="flex flex-col justify-center px-6 py-20 md:px-12 lg:px-[8vw]">
+            <SectionLabel index="05" label="Our purpose" light />
+            <h2 className="mt-6 max-w-2xl text-[clamp(52px,5.4vw,90px)] font-bold leading-[1.03] tracking-[-0.04em]">
+              Growth that creates opportunity.
+            </h2>
+            <p className="mt-6 max-w-xl text-lg text-white/80">
+              BioTure builds dependable businesses that strengthen industries, support communities and create lasting economic value.
+            </p>
+            <Link href="/about" className="mt-8 w-max border-b border-white pb-2 font-medium">
+              Discover our story
+            </Link>
           </div>
         </section>
 

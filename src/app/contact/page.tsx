@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Hero } from "@/components/hero";
 import { SectionLabel } from "@/components/section-label";
 import { SiteFooter } from "@/components/site-footer";
@@ -58,8 +57,8 @@ export default function ContactPage() {
           image="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2200&q=90"
         />
         <section className="section-shell">
-          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-            <div>
+          <div className="grid items-start gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+            <div className="m-0 p-0">
               <SectionLabel index="01" label="Group enquiries" />
               <h2 className="mt-5 text-[clamp(34px,4vw,60px)] font-medium leading-[1.08] tracking-[-0.02em]">
                 Let&apos;s explore what we can build together.
@@ -95,9 +94,6 @@ export default function ContactPage() {
                   </a>
                 ))}
               </div>
-              <Button asChild className="mt-10">
-                <Link href="mailto:hello@bioturegroup.com?subject=Book%20a%20BioTure%20call">Book a discovery call</Link>
-              </Button>
             </div>
             <form className="grid gap-5 border border-stone-200 bg-white p-5 md:grid-cols-2 md:p-8">
               {[
