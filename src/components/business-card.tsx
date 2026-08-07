@@ -5,7 +5,7 @@ import type { Business } from "@/data/businesses";
 export function BusinessCard({ business, wide = false }: { business: Business; wide?: boolean }) {
   return (
     <Link
-      href={`/${business.slug}`}
+      href={`/business/${business.slug}`}
       className={wide ? "group business-card lg:col-span-2" : "group business-card"}
     >
       <div className="absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-105" style={{ backgroundImage: `url("${business.image}")` }} />

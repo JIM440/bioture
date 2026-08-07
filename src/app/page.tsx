@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { ArrowDown, ArrowUpRight, BriefcaseBusiness, Building2, Globe2, Mail, MapPin, Phone, ShieldCheck } from "lucide-react";
+import { BriefcaseBusiness, Building2, Globe2, Mail, MapPin, Phone, ShieldCheck } from "lucide-react";
+import { ContactForm } from "@/components/contact-form";
+import { HomeHero } from "@/components/home-hero";
 import { HomeCompanies } from "@/components/home-companies";
 import { SectionLabel } from "@/components/section-label";
 import { SiteFooter } from "@/components/site-footer";
@@ -7,6 +9,20 @@ import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 import { businesses } from "@/data/businesses";
 
+const partnerImages = [
+  "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=500&q=80",
+  "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=500&q=80",
+  "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=500&q=80",
+  "https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&w=500&q=80",
+  "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=500&q=80",
+];
+
+const sustainabilityCards = [
+  ["01", "Green energy", "Prioritising solar-ready facilities, efficient equipment and lower-emission power choices where operations allow."],
+  ["02", "Resource efficiency", "Managing water, energy and raw materials through measurable targets, reuse, recycling and waste reduction."],
+  ["03", "Environmental management", "Using an EMS mindset aligned with ISO 14001 principles: plan, implement, evaluate and improve."],
+  ["04", "Land and crops", "Supporting planted crops, responsible agriculture and soil-conscious practices that protect productive land."],
+];
 function InstagramLogo() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -54,31 +70,9 @@ export default function Home() {
     <>
       <SiteHeader />
       <main>
-        <section className="relative grid min-h-screen place-items-center overflow-hidden text-center text-white">
-          <div className="absolute inset-0">
-            <div className="absolute inset-0 scale-110 bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=90')" }} />
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,.28),rgba(0,0,0,.08)),linear-gradient(0deg,rgba(0,0,0,.42),transparent_60%)]" />
-          </div>
-          <div className="relative z-10 mx-auto w-full max-w-[900px] px-6 py-28 text-center">
-            <SectionLabel index="00" label="BioTure Group" light />
-            <h1 className="mx-auto mt-5 max-w-3xl text-[clamp(72px,7vw,80px)] font-bold leading-[1.05] tracking-[-0.035em]">
-              What we build today shapes tomorrow.
-            </h1>
-            <p className="mx-auto mt-5 max-w-xl text-[17px] leading-normal text-white/80">
-              Eight businesses. One trusted group. Creating value across essential industries.
-            </p>
-            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <Button asChild showArrow>
-                <Link href="/businesses">Explore our businesses</Link>
-              </Button>
-            </div>
-          </div>
-          <Link href="#portfolio" aria-label="Discover portfolio" className="absolute bottom-[30px] left-[34px] z-10 hidden items-center gap-3 text-[11px] uppercase tracking-[0.15em] text-white md:flex">
-            Discover <ArrowDown className="size-4" />
-          </Link>
-        </section>
+        <HomeHero businesses={businesses} />
 
-        <section className="bg-[#edf4f5] px-5 py-20 md:px-8 md:py-28">
+        <section className="bg-green-soft px-5 py-20 md:px-8 md:py-28">
           <div className="mx-auto grid max-w-[1500px] gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <div className="grid gap-6 sm:grid-cols-2">
               {[
@@ -87,16 +81,16 @@ export default function Home() {
                 { value: "5+", label: "Priority markets and growth territories", Icon: Globe2 },
                 { value: "1", label: "Shared standard of trust across the group", Icon: ShieldCheck },
               ].map(({ value, label, Icon }) => (
-                <article key={label} className="motion-item min-h-[225px] bg-white p-7 md:p-8">
+                <article key={label} className="motion-item min-h-[176px] bg-white p-5 md:p-6">
                   <div className="flex justify-end">
-                    <span className="grid size-14 place-items-center bg-[#edf4f5] text-emerald-950">
-                      <Icon className="size-6" strokeWidth={1.8} />
+                    <span className="grid size-11 place-items-center bg-[#edf4f5] text-emerald-950">
+                      <Icon className="size-5" strokeWidth={1.8} />
                     </span>
                   </div>
-                  <strong className="mt-6 block text-[clamp(52px,5vw,76px)] font-bold leading-none tracking-[-0.05em] text-slate-950">
+                  <strong className="mt-5 block text-[clamp(42px,4.5vw,62px)] font-bold leading-none tracking-[-0.05em] text-slate-950">
                     {value}
                   </strong>
-                  <p className="mt-4 max-w-[250px] text-lg font-medium leading-7 text-slate-950">{label}</p>
+                  <p className="mt-3 max-w-[230px] text-base font-medium leading-6 text-slate-950">{label}</p>
                 </article>
               ))}
             </div>
@@ -110,12 +104,12 @@ export default function Home() {
                 We build businesses that matter.
               </h2>
               <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-700">
-                BioTure is a diversified African group creating dependable companies across property, commerce,
+                Bioture is a diversified African group creating dependable companies across property, commerce,
                 agriculture, finance, technology, manufacturing, mobility and resources. Each business works with
                 focused expertise while sharing one standard of trust.
               </p>
               <Button asChild className="mt-10">
-                <Link href="/about">More about BioTure</Link>
+                <Link href="/about">More about Bioture</Link>
               </Button>
             </div>
           </div>
@@ -123,13 +117,29 @@ export default function Home() {
 
         <HomeCompanies businesses={businesses} />
 
+        <section className="bg-white px-5 py-16 md:px-8 md:py-24">
+          <div className="mx-auto max-w-[1500px]">
+            <SectionLabel index="02" label="Partners" />
+            <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {partnerImages.map((image, index) => (
+                <div
+                  key={image}
+                  className="partner-image-tile min-h-[160px]"
+                  role="img"
+                  aria-label={`Partner ${index + 1}`}
+                  style={{ backgroundImage: `url("${image}")` }}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
 
-        <section className="section-shell border-t border-stone-200">
-          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+        <section className="bg-green-soft px-5 py-20 md:px-8 md:py-28">
+          <div className="mx-auto grid max-w-[1500px] gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
-              <SectionLabel index="02" label="The complete portfolio" />
+              <SectionLabel index="03" label="The complete portfolio" />
               <h2 className="mt-5 max-w-4xl text-[clamp(34px,5vw,72px)] font-bold leading-[1.05] tracking-[-0.03em]">
-                Discover every company within the BioTure Group.
+                Discover every company within the Bioture Group.
               </h2>
             </div>
             <Button asChild showArrow>
@@ -138,48 +148,37 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="hidden" aria-hidden="true" style={{ background: "var(--green)" }}>
-          <div
-            className="min-h-[500px] bg-cover bg-center"
-            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1400&q=88')" }}
-          />
-          <div className="flex flex-col justify-center px-6 py-20 md:px-12 lg:px-[8vw]">
-            <SectionLabel index="04" label="Our purpose" light />
-            <h2 className="mt-6 max-w-2xl text-[clamp(48px,5vw,82px)] font-medium leading-[1.05] tracking-[-0.03em]">
-              Growth that creates opportunity.
-            </h2>
-            <p className="mt-6 max-w-xl text-lg text-white/80">
-              BioTure builds dependable businesses that strengthen industries, support communities and create lasting economic value.
-            </p>
-            <Link href="/about" className="mt-8 w-max border-b border-white pb-2 font-medium">
-              Discover our story ↗
-            </Link>
+        <section id="sustainability" className="bg-white px-5 pt-20 md:px-8 md:pt-28">
+          <div className="mx-auto grid max-w-[1500px] overflow-hidden border border-stone-200 lg:grid-cols-[0.92fr_1.08fr]">
+            <div className="relative min-h-[420px] bg-cover bg-center lg:min-h-[620px]" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=1600&q=90')" }}>
+              <div className="absolute inset-0 bg-black/18" />
+            </div>
+            <div className="bg-[#f5f6f3] p-6 md:p-12 lg:p-16">
+              <SectionLabel index="04" label="Sustainability" />
+              <h2 className="mt-5 max-w-3xl text-[clamp(38px,5vw,74px)] font-bold leading-[1.04] tracking-[-0.04em]">
+                Sustainable growth built into every business.
+              </h2>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-700">
+                Bioture treats sustainability as operating discipline: cleaner energy choices, efficient resource use,
+                pollution prevention, planted crops and land stewardship, and regular review of environmental risk across the group.
+              </p>
+              <div className="mt-10 border-l-4 border-emerald-950 pl-5 text-sm leading-7 text-stone-700">
+                Our direction is informed by recognized sustainability frameworks, including environmental management systems,
+                precautionary risk thinking, pollution prevention and transparent performance review.
+              </div>
+            </div>
           </div>
         </section>
 
-        <section id="sustainability" className="grid bg-stone-100 lg:grid-cols-2">
-          <div className="min-h-[520px] bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=1600&q=90')" }} />
-          <div className="px-5 py-16 md:px-12 md:py-24 lg:px-20">
-            <SectionLabel index="04" label="Sustainability" />
-            <h2 className="mt-5 text-[clamp(34px,4vw,64px)] font-medium leading-[1.08] tracking-[-0.02em]">Progress designed to last.</h2>
-            <p className="mt-6 max-w-xl text-stone-600">
-              Across the group, BioTure aims to grow responsibly, considering people, communities and the environment in the way opportunities are developed.
-            </p>
-            <div className="mt-10 grid gap-5">
-              {[
-                ["01", "Responsible operations", "Building quality, safety and accountability into every business."],
-                ["02", "Shared prosperity", "Creating jobs, partnerships and stronger local value chains."],
-                ["03", "Smarter resource use", "Seeking efficient and lower-impact ways to grow."],
-              ].map(([index, title, copy]) => (
-                <div key={title} className="grid grid-cols-[52px_1fr] gap-5 border-t border-stone-300 pt-5">
-                  <span className="font-mono text-xs uppercase tracking-[0.15em] text-stone-500">{index}</span>
-                  <div>
-                    <h3 className="text-xl font-medium">{title}</h3>
-                    <p className="mt-1 text-stone-600">{copy}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+        <section className="bg-white px-5 pb-20 pt-6 md:px-8 md:pb-28">
+          <div className="mx-auto grid max-w-[1500px] gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {sustainabilityCards.map(([index, title, copy]) => (
+              <article key={title} className="border border-stone-300 bg-[#f5f6f3] p-5">
+                <span className="font-mono text-xs font-bold uppercase tracking-[0.15em] text-emerald-950">{index}</span>
+                <h3 className="mt-5 text-2xl font-bold leading-tight tracking-[-0.02em]">{title}</h3>
+                <p className="mt-3 text-sm leading-6 text-stone-600">{copy}</p>
+              </article>
+            ))}
           </div>
         </section>
 
@@ -194,33 +193,11 @@ export default function Home() {
               Growth that creates opportunity.
             </h2>
             <p className="mt-6 max-w-xl text-lg text-white/80">
-              BioTure builds dependable businesses that strengthen industries, support communities and create lasting economic value.
+              Bioture builds dependable businesses that strengthen industries, support communities and create lasting economic value.
             </p>
             <Link href="/about" className="mt-8 w-max border-b border-white pb-2 font-medium">
               Discover our story
             </Link>
-          </div>
-        </section>
-
-        <section className="section-shell">
-          <SectionLabel index="05" label="From the group" />
-          <div className="mb-12 flex items-end justify-between gap-6">
-            <h2 className="section-title">Stories of progress.</h2>
-            <ArrowUpRight className="hidden size-8 text-emerald-950 md:block" />
-          </div>
-          <div className="grid gap-5 md:grid-cols-2">
-            {[
-              ["Sustainability", "Building responsible businesses for a changing world.", "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=1000&q=85"],
-              ["Innovation", "How shared expertise drives new opportunities across the group.", "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1000&q=85"],
-            ].map(([kicker, title, image]) => (
-              <article key={title} className="border border-stone-200">
-                <div className="min-h-[310px] bg-cover bg-center" style={{ backgroundImage: `url("${image}")` }} />
-                <div className="p-6">
-                  <SectionLabel index={kicker === "Sustainability" ? "01" : "02"} label={kicker} />
-                  <h3 className="mt-4 text-3xl font-medium leading-tight tracking-[-0.01em]">{title}</h3>
-                </div>
-              </article>
-            ))}
           </div>
         </section>
 
@@ -229,7 +206,7 @@ export default function Home() {
             <div className="flex flex-col justify-between">
               <div>
                 <h2 className="max-w-2xl text-[clamp(44px,5.8vw,86px)] font-bold leading-[1.08] tracking-[-0.03em]">
-                  Let&apos;s keep in touch with BioTure.
+                  Connect with Bioture.
                 </h2>
                 <p className="mt-7 max-w-xl text-stone-600">
                   Contact us today to explore group partnerships, investment conversations, media, careers and general enquiries.
@@ -273,13 +250,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative min-h-[520px] overflow-hidden bg-black text-white">
-              <div
-                className="absolute inset-0 bg-cover bg-center opacity-85"
-                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1800&q=90')" }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
-            </div>
+            <ContactForm />
           </div>
         </section>
       </main>
@@ -287,3 +258,5 @@ export default function Home() {
     </>
   );
 }
+
+

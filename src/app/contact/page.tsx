@@ -1,8 +1,8 @@
+import { ContactForm } from "@/components/contact-form";
 import { Hero } from "@/components/hero";
 import { SectionLabel } from "@/components/section-label";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { Button } from "@/components/ui/button";
 
 function InstagramLogo() {
   return (
@@ -52,11 +52,15 @@ export default function ContactPage() {
       <SiteHeader />
       <main>
         <Hero
-          eyebrow="Contact BioTure"
-          title={"Start a meaningful\nconversation."}
-          image="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2200&q=90"
+          eyebrow="Contact Bioture"
+          title="Let's explore your next strategic venture."
+          image="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2400&q=92"
+          actions={[
+            { href: "#contact-form", label: "Send enquiry" },
+            { href: "mailto:hello@bioturegroup.com", label: "Email Bioture", variant: "light" },
+          ]}
         />
-        <section className="section-shell">
+        <section id="contact-form" className="section-shell">
           <div className="grid items-start gap-12 lg:grid-cols-[0.8fr_1.2fr]">
             <div className="m-0 p-0">
               <SectionLabel index="01" label="Group enquiries" />
@@ -64,7 +68,7 @@ export default function ContactPage() {
                 Let&apos;s explore what we can build together.
               </h2>
               <address className="mt-10 not-italic text-stone-700">
-                <strong className="text-stone-950">BioTure Group</strong>
+                <strong className="text-stone-950">Bioture Group</strong>
                 <br />
                 Corporate address placeholder
                 <br />
@@ -95,40 +99,11 @@ export default function ContactPage() {
                 ))}
               </div>
             </div>
-            <form className="grid gap-5 border border-stone-200 bg-white p-5 md:grid-cols-2 md:p-8">
-              {[
-                ["name", "Full name", "text", "Enter your full name"],
-                ["email", "Email address", "email", "Enter your email address"],
-                ["company", "Company", "text", "Enter your company name"],
-              ].map(([id, label, type, placeholder]) => (
-                <div key={id} className="field">
-                  <label htmlFor={id}>{label}</label>
-                  <input id={id} type={type} placeholder={placeholder} required={id !== "company"} />
-                </div>
-              ))}
-              <div className="field">
-                <label htmlFor="subject">Enquiry type</label>
-                <select id="subject" defaultValue="">
-                  <option value="" disabled>Select enquiry type</option>
-                  <option>General enquiry</option>
-                  <option>Partnership</option>
-                  <option>Investment</option>
-                  <option>Media</option>
-                  <option>Careers</option>
-                </select>
-              </div>
-              <div className="field md:col-span-2">
-                <label htmlFor="message">Message</label>
-                <textarea id="message" required rows={7} placeholder="Tell us what you would like to build, discuss, or explore." />
-              </div>
-              <Button type="submit" showArrow className="md:col-span-2">
-                Send enquiry
-              </Button>
-            </form>
+            <ContactForm />
           </div>
         </section>
       </main>
-      <SiteFooter title="Many industries. One standard of trust." cta="Explore our businesses" href="/businesses" />
+      <SiteFooter title="Building Value Across Essential Industries." cta="Explore our businesses" href="/businesses" />
     </>
   );
 }
