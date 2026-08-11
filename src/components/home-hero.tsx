@@ -63,7 +63,7 @@ export function HomeHero({ businesses }: HomeHeroProps) {
             <Link href="/businesses">Explore our businesses</Link>
           </Button>
           <Button asChild variant="light">
-            <Link href="/contact">Partner with us</Link>
+            <Link href="/contact?subject=partnership">Partner with us</Link>
           </Button>
         </div>
       </div>

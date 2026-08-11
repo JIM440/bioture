@@ -11,7 +11,9 @@ export const metadata: Metadata = {
   description:
     "Bioture Group is a diversified group of companies creating dependable solutions across commerce, agriculture, finance, real estate, resources, technology, manufacturing and mobility.",
   icons: {
-    icon: "/assets/bioture-icon.png",
+    icon: "/assets/bioture-favicon.png",
+    shortcut: "/assets/bioture-favicon.png",
+    apple: "/assets/bioture-favicon.png",
   },
 };
 

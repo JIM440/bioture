@@ -11,7 +11,7 @@ type SiteFooterProps = {
 export function SiteFooter({
   title = "Let's build lasting value together.",
   cta = "Contact Bioture",
-  href = "/contact",
+  href = "/contact?subject=general-enquiry",
 }: SiteFooterProps) {
   return (
     <footer className="footer-legacy text-white">
@@ -29,7 +29,7 @@ export function SiteFooter({
             <Link href="/about">About</Link>
             <Link href="/businesses">Our Businesses</Link>
             <Link href="/#sustainability">Sustainability</Link>
-            <Link href="/contact">Contact</Link>
+            <Link href="/contact?subject=general-enquiry">Contact</Link>
           </div>
           <div>
             <p className="footer-label">Businesses</p>

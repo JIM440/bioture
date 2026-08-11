@@ -12,7 +12,7 @@
   --background: #fff;
   --foreground: #000;
   --font-aa-sans: "AA Smart Sans", "AA Sans", "AASans", "Manrope", Arial, sans-serif;
-  --font-heading: "Garamond Premier Pro", Georgia, "Times New Roman", serif;
+  --font-heading: "Palatino LT Pro", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
 }
 
 @font-face {
@@ -29,6 +29,22 @@
   font-family: "Garamond Premier Pro";
   src: url("/fonts/garamond-premier-pro-regular.ttf") format("truetype");
   font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Palatino LT Pro";
+  src: url("/fonts/palatino-lt-pro-roman.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Palatino LT Pro";
+  src: url("/fonts/palatino-lt-pro-bold.ttf") format("truetype");
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
@@ -124,7 +140,7 @@ a[role="button"] {
   font-size: clamp(46px, 5vw, 72px);
   font-weight: 700;
   line-height: 1.05;
-  letter-spacing: -0.03em;
+  letter-spacing: 0;
 }
 
 .statement-grid p {
@@ -159,14 +175,14 @@ a[role="button"] {
   color: rgba(255, 255, 255, 0.48);
 }
 
-footer div > a {
+footer div>a {
   display: block;
   margin-top: 10px;
   color: rgba(255, 255, 255, 0.72);
   transition: color 160ms ease;
 }
 
-footer div > a:hover {
+footer div>a:hover {
   color: #fff;
 }
 
@@ -263,21 +279,21 @@ main h1 {
   font-size: clamp(68px, 8.6vw, 124px) !important;
   font-weight: 700 !important;
   line-height: 1.04 !important;
-  letter-spacing: -0.05em !important;
+  letter-spacing: 0 !important;
 }
 
 main h2 {
   font-size: clamp(36px, 5.6vw, 72px);
   font-weight: 700;
   line-height: 1.05;
-  letter-spacing: -0.03em;
+  letter-spacing: 0;
 }
 
 main h3 {
   font-size: clamp(28px, 4.5vw, 56px);
   font-weight: 700;
   line-height: 1.08;
-  letter-spacing: -0.025em;
+  letter-spacing: 0;
 }
 
 p {
@@ -308,6 +324,7 @@ p {
   animation: home-hero-copy 620ms ease both;
   letter-spacing: 0 !important;
 }
+
 .site-header-legacy {
   border-bottom: 1px solid transparent;
   transition: transform 0.42s ease, background 0.32s ease, border-color 0.32s ease, box-shadow 0.32s ease;
@@ -369,9 +386,9 @@ p {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 27px;
-  height: 2px;
-  background: currentColor;
+  bottom: 24px;
+  height: 3px;
+  background: var(--green);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.38s cubic-bezier(0.75, 0, 0.2, 1);
@@ -539,48 +556,49 @@ p {
   font-size: 12px;
 }
 
-.next-business-card {
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: clamp(28px, 7vw, 100px);
-  border: 1px solid #111;
-  background: #fff;
-  padding: clamp(28px, 5vw, 74px);
-  color: #000;
-}
-
-.next-business-card:hover .next-business-arrow {
-  background: #000;
-  color: #fff;
-  transform: translate(4px, -4px);
-}
-
 .next-business-label {
-  margin-bottom: 18px;
-  color: #555;
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1.15;
-}
-
-.next-business-title {
   display: block;
-  max-width: 760px;
-  font-size: clamp(48px, 7vw, 98px);
+  color: #111;
+  font-size: 13px;
   font-weight: 700;
-  line-height: 1.04;
-  letter-spacing: -0.04em;
+  line-height: 1.25;
 }
 
-.next-business-arrow {
+.next-business-copy {
+  display: block;
+  max-width: 520px;
+  color: #111;
+  font-size: clamp(16px, 1.5vw, 22px);
+  font-weight: 700;
+  line-height: 1.22;
+}
+
+.next-business-inline {
   display: grid;
-  width: clamp(78px, 9vw, 112px);
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  color: #111;
+  width: min(100%, 640px);
+  justify-self: start;
+}
+
+.next-business-round-arrow {
+  display: grid;
+  width: 42px;
   aspect-ratio: 1;
   place-items: center;
-  border: 1px solid var(--line);
-  color: #111;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
   transition: 0.22s ease;
 }
+
+.next-business-inline:hover .next-business-round-arrow {
+  background: var(--green);
+  transform: translate(3px, -3px);
+}
+
 .language-switcher {
   position: relative;
   display: flex;
@@ -915,7 +933,33 @@ p {
   background-size: cover;
   filter: grayscale(0.25);
 }
+
+.finance-profile-heading {
+  font-size: clamp(34px, 4vw, 56px) !important;
+  line-height: 1.08 !important;
+}
+
+.real-estate-profile-section {
+  padding-block: 120px;
+}
+
+.real-estate-profile-section .statement-grid {
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: clamp(42px, 6vw, 96px);
+}
+
+.real-estate-profile-section .statement-grid > div,
+.real-estate-profile-section .statement-grid p {
+  max-width: none;
+}
+
+.real-estate-profile-heading {
+  font-size: clamp(36px, 4.5vw, 62px) !important;
+  line-height: 1.08 !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
+
   .motion-ready .motion-reveal,
   .motion-ready .motion-image,
   .team-row,
@@ -955,6 +999,7 @@ p {
     transform: translateY(0);
   }
 }
+
 @media (max-width: 1000px) {
   .section-shell {
     padding: 90px 22px;
@@ -980,14 +1025,9 @@ p {
   .team-row:hover {
     transform: none;
   }
-  .next-business-card {
-    grid-template-columns: 1fr;
-    min-height: 220px;
-  }
 
-  .next-business-arrow {
-    width: 72px;
-    justify-self: end;
+  .next-business-inline {
+    justify-self: start;
   }
 }
 
@@ -997,6 +1037,7 @@ p {
     display: block;
   }
 }
+
 @media (max-width: 560px) {
   .section-shell {
     padding: 76px 18px;
@@ -1009,7 +1050,7 @@ p {
   main h1 {
     font-size: clamp(54px, 16vw, 76px) !important;
     line-height: 1.04 !important;
-    letter-spacing: -0.04em !important;
+    letter-spacing: 0 !important;
   }
 
   main h2,
@@ -1017,7 +1058,7 @@ p {
   .section-title {
     font-size: clamp(32px, 10vw, 46px) !important;
     line-height: 1.08 !important;
-    letter-spacing: -0.028em !important;
+    letter-spacing: 0 !important;
   }
 
   main h3 {
@@ -1043,8 +1084,8 @@ p {
     min-height: 122px;
   }
 
-  
-.language-switcher {
+
+  .language-switcher {
     display: none;
   }
 }

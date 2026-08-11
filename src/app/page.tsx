@@ -74,23 +74,23 @@ export default function Home() {
 
         <section className="bg-green-soft px-5 py-20 md:px-8 md:py-28">
           <div className="mx-auto grid max-w-[1500px] gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-            <div className="grid gap-6 sm:grid-cols-2">
+            <div className="grid grid-cols-2 gap-3 sm:gap-6">
               {[
                 { value: "8", label: "Operating businesses across essential sectors", Icon: Building2 },
                 { value: "20+", label: "Specialist divisions and service areas", Icon: BriefcaseBusiness },
                 { value: "5+", label: "Priority markets and growth territories", Icon: Globe2 },
                 { value: "1", label: "Shared standard of trust across the group", Icon: ShieldCheck },
               ].map(({ value, label, Icon }) => (
-                <article key={label} className="motion-item min-h-[176px] bg-white p-5 md:p-6">
+                <article key={label} className="motion-item min-h-[156px] bg-white p-4 sm:min-h-[176px] sm:p-5 md:p-6">
                   <div className="flex justify-end">
-                    <span className="grid size-11 place-items-center bg-[#edf4f5] text-emerald-950">
-                      <Icon className="size-5" strokeWidth={1.8} />
+                    <span className="grid size-9 place-items-center bg-[#edf4f5] text-emerald-950 sm:size-11">
+                      <Icon className="size-4 sm:size-5" strokeWidth={1.8} />
                     </span>
                   </div>
-                  <strong className="mt-5 block text-[clamp(42px,4.5vw,62px)] font-bold leading-none tracking-[-0.05em] text-slate-950">
+                  <strong className="mt-5 block text-[clamp(32px,8vw,62px)] font-bold leading-none tracking-[0] text-slate-950">
                     {value}
                   </strong>
-                  <p className="mt-3 max-w-[230px] text-base font-medium leading-6 text-slate-950">{label}</p>
+                  <p className="mt-3 max-w-[230px] text-[13px] font-medium leading-5 text-slate-950 sm:text-base sm:leading-6">{label}</p>
                 </article>
               ))}
             </div>
@@ -117,6 +117,20 @@ export default function Home() {
 
         <HomeCompanies businesses={businesses} />
 
+        <section className="bg-green-soft px-5 py-20 md:px-8 md:py-28">
+          <div className="mx-auto grid max-w-[1500px] gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+            <div>
+              <SectionLabel index="03" label="The complete portfolio" />
+              <h2 className="mt-5 max-w-4xl text-[clamp(34px,5vw,72px)] font-bold leading-[1.05] tracking-[-0.03em]">
+                Discover every company within the Bioture Group.
+              </h2>
+            </div>
+            <Button asChild showArrow>
+              <Link href="/businesses">View all businesses</Link>
+            </Button>
+          </div>
+        </section>
+
         <section className="bg-white px-5 py-16 md:px-8 md:py-24">
           <div className="mx-auto max-w-[1500px]">
             <SectionLabel index="02" label="Partners" />
@@ -134,16 +148,16 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="bg-green-soft px-5 py-20 md:px-8 md:py-28">
-          <div className="mx-auto grid max-w-[1500px] gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+        <section className="bg-emerald-950 px-5 py-16 text-white md:px-8 md:py-24">
+          <div className="mx-auto grid max-w-[1500px] gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <SectionLabel index="03" label="The complete portfolio" />
-              <h2 className="mt-5 max-w-4xl text-[clamp(34px,5vw,72px)] font-bold leading-[1.05] tracking-[-0.03em]">
-                Discover every company within the Bioture Group.
+              <p className="font-mono text-xs font-bold uppercase tracking-[0.15em] text-white/60">Partner with Bioture</p>
+              <h2 className="mt-5 max-w-4xl text-[clamp(38px,5vw,76px)] font-bold leading-[1.05] tracking-[-0.04em]">
+                Partner with us today and make lasting impact.
               </h2>
             </div>
-            <Button asChild showArrow>
-              <Link href="/businesses">View all businesses</Link>
+            <Button asChild variant="light" className="min-w-[220px]">
+              <Link href="/contact?subject=partnership">Partner</Link>
             </Button>
           </div>
         </section>
@@ -258,5 +272,4 @@ export default function Home() {
     </>
   );
 }
-
 

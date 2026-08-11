@@ -45,9 +45,9 @@ export const businesses: Business[] = [
     title: "Bioture Real Estate",
     shortTitle: "Real Estate",
     heroTitle: "Places of value.\nBuilt to endure.",
-    introTitle: "Developing property opportunities into durable residential, commercial and mixed-use assets.",
+    introTitle: "Luxury homes, prime land and considered property spaces built for lasting value.",
     introCopy:
-      "Bioture Real Estate develops property assets that combine strategic locations, practical design and long-term investment value.",
+      "Bioture Real Estate develops luxury homes, prime land and considered property spaces that combine strategic locations, practical design and long-term investment value.",
     summary: "Developing residential, commercial and mixed-use assets that turn strategic locations into durable investment value.",
     partners: ["Landowners", "Developers", "Architects", "Investors", "Property buyers"],
     image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=90",
@@ -63,10 +63,10 @@ export const businesses: Business[] = [
     footerTitle: "Discover places with enduring potential.",
     footerCta: "Explore real estate opportunities",
     platform: {
-      title: "Find your next property opportunity",
-      copy: "Search houses, land, commercial spaces and development opportunities on the dedicated property website.",
+      title: "Browse more Bioture Real Estate properties like these.",
+      copy: "See more luxury homes, land opportunities and considered property spaces from Bioture Real Estate on the dedicated property website.",
       href: "https://realestate.bioture.com",
-      label: "Browse properties",
+      label: "Browse more properties",
     },
   },
   {
@@ -109,10 +109,10 @@ export const businesses: Business[] = [
     footerTitle: "Build your route to market with Bioture.",
     footerCta: "Start a commerce conversation",
     platform: {
-      title: "Shop and discover products",
+      title: "Shop and discover more products",
       copy: "Browse products, collections and commercial offers on the dedicated Bioture Commerce platform.",
       href: "https://commerce.bioture.com",
-      label: "Visit the commerce platform",
+      label: "Shop and discover more products",
     },
   },
   {
@@ -336,7 +336,7 @@ export const businesses: Business[] = [
     title: "Bioture Finance & Consultancy",
     shortTitle: "Finance & Consultancy",
     heroTitle: "Informed decisions.\nStronger futures.",
-    introTitle: "Providing finance, insurance and advisory services that support stronger decisions and institutional resilience.",
+    introTitle: "Finance, insurance and advisory support for stronger decisions.",
     introCopy:
       "Bioture Finance & Consultancy delivers finance, insurance and advisory services that help clients manage risk and pursue opportunity.",
     summary: "Financial, insurance and advisory capabilities that support resilient families, businesses and institutions.",
@@ -379,7 +379,4 @@ export const businesses: Business[] = [
 export function getBusiness(slug: string) {
   return businesses.find((business) => business.slug === slug);
 }
-
-
-
 

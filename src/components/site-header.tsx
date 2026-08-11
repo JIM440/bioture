@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/contact?subject=general-enquiry", label: "Contact" },
 ];
 
 export function SiteHeader() {
@@ -118,7 +118,7 @@ export function SiteHeader() {
             </div>
           </div>
           <Link
-            href="/contact"
+            href="/contact?subject=general-enquiry"
             className={cn("nav-link-legacy py-[35px] transition", pathname === "/contact" ? "active text-emerald-950" : "")}
           >
             Contact
@@ -154,7 +154,7 @@ export function SiteHeader() {
             </div>
           </div>
           <Button asChild size="sm">
-            <Link href="/contact">Partner with us</Link>
+            <Link href="/contact?subject=partnership">Partner with us</Link>
           </Button>
         </div>
         <button
@@ -202,7 +202,7 @@ export function SiteHeader() {
             {mobileBusinessOpen ? (
               <div className="mobile-business-list">
                 <Link href="/businesses" onClick={() => setOpen(false)}>
-                  Companies
+                  All Companies
                 </Link>
                 {businesses.map((business) => (
                   <Link key={business.slug} href={`/business/${business.slug}`} onClick={() => setOpen(false)}>
@@ -212,7 +212,7 @@ export function SiteHeader() {
               </div>
             ) : null}
           </div>
-          <Link href="/contact" onClick={() => setOpen(false)} className="text-3xl font-medium tracking-tight">
+          <Link href="/contact?subject=general-enquiry" onClick={() => setOpen(false)} className="text-3xl font-medium tracking-tight">
             Contact
           </Link>
           <div className="mobile-language">

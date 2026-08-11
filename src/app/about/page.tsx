@@ -72,16 +72,16 @@ export default function AboutPage() {
         <section className="bg-stone-100 px-5 py-16 md:px-8 md:py-20">
           <div className="mx-auto max-w-[1500px]">
             <SectionLabel index="02" label="Bioture at a glance" />
-            <div className="mt-10 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+            <div className="mt-10 grid grid-cols-2 gap-3 xl:grid-cols-4">
               {glanceStats.map(({ label, value, Icon }) => (
-                <article key={label} className="border border-stone-300 bg-white p-6">
-                  <div className="flex items-start justify-between gap-4">
-                    <p className="font-mono text-xs uppercase tracking-[0.15em] text-stone-500">{label}</p>
-                    <span className="grid size-10 shrink-0 place-items-center bg-green-soft text-emerald-950">
-                      <Icon className="size-5" strokeWidth={1.8} />
+                <article key={label} className="border border-stone-300 bg-white p-4 sm:p-6">
+                  <div className="flex items-start justify-between gap-3">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-500 sm:text-xs sm:tracking-[0.15em]">{label}</p>
+                    <span className="grid size-9 shrink-0 place-items-center bg-green-soft text-emerald-950 sm:size-10">
+                      <Icon className="size-4 sm:size-5" strokeWidth={1.8} />
                     </span>
                   </div>
-                  <strong className="mt-5 block text-[clamp(34px,4.5vw,62px)] font-bold leading-none tracking-[-0.04em] text-black">{value}</strong>
+                  <strong className="mt-5 block text-[clamp(28px,8vw,62px)] font-bold leading-none tracking-[0] text-black">{value}</strong>
                 </article>
               ))}
             </div>

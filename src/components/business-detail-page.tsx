@@ -8,35 +8,50 @@ import { SectionLabel } from "@/components/section-label";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { RealEstateShowcase } from "@/components/real-estate-showcase";
+import { AgricultureFoodShowcase } from "@/components/agriculture-food-showcase";
+import { FinanceConsultancyShowcase } from "@/components/finance-consultancy-showcase";
+import { CommerceShowcase } from "@/components/commerce-showcase";
 import type { Business } from "@/data/businesses";
 
 export function BusinessDetailPage({ business, nextBusiness }: { business: Business; nextBusiness: Business }) {
+  const isAgricultureFood = business.slug === "agriculture-food";
+  const isFinanceConsultancy = business.slug === "finance-consultancy";
+  const isRealEstate = business.slug === "real-estate";
+  const isCommerce = business.slug === "commerce";
+  const showDefaultProfile = !isAgricultureFood && !isCommerce;
+  const showDefaultDivisions = business.divisions.length > 0 && !isAgricultureFood && !isFinanceConsultancy && !isCommerce;
+  const defaultPlatform = business.platform && business.slug !== "real-estate" && !isAgricultureFood && !isCommerce ? business.platform : null;
+
   return (
     <>
       <SiteHeader />
       <main>
         <Hero eyebrow={business.title} title={business.heroTitle} image={business.image} />
-        <section className="section-shell">
-          <SectionLabel index="01" label="Operating group profile" />
-          <div className="statement-grid">
-            <h2>{business.introTitle}</h2>
-            <div className="space-y-6">
-              <p>{business.introCopy}</p>
-              <p>
-                This corporate profile presents the group&apos;s role, capabilities and partnership direction before guiding users to
-                specialist platforms where available.
-              </p>
-              <div className="border-l-4 border-emerald-950 pl-5">
-                <p className="text-xs font-bold uppercase tracking-[0.15em] text-emerald-950">Partner focus</p>
-                <p className="mt-2 text-base leading-7 text-stone-600">{business.partners.join(", ")}</p>
+        {showDefaultProfile ? (
+          <section className={isRealEstate ? "section-shell real-estate-profile-section" : "section-shell"}>
+            <SectionLabel index="01" label="Operating group profile" />
+            <div className="statement-grid">
+              <h2 className={isFinanceConsultancy ? "finance-profile-heading" : isRealEstate ? "real-estate-profile-heading" : undefined}>{business.introTitle}</h2>
+              <div className="space-y-6">
+                <p>{business.introCopy}</p>
+                <p>
+                  This corporate profile presents the group&apos;s role, capabilities and partnership direction before guiding users to
+                  specialist platforms where available.
+                </p>
+                {!isFinanceConsultancy ? (
+                  <div className="border-l-4 border-emerald-950 pl-5">
+                    <p className="text-xs font-bold uppercase tracking-[0.15em] text-emerald-950">Partner focus</p>
+                    <p className="mt-2 text-base leading-7 text-stone-600">{business.partners.join(", ")}</p>
+                  </div>
+                ) : null}
+                <Button asChild showArrow>
+                  <Link href={business.actionHref}>Speak with the team</Link>
+                </Button>
               </div>
-              <Button asChild showArrow>
-                <Link href="/contact">Speak with the team</Link>
-              </Button>
             </div>
-          </div>
-        </section>
-        {business.divisions.length > 0 ? (
+          </section>
+        ) : null}
+        {showDefaultDivisions ? (
           <section className="section-shell border-t border-stone-200">
             <SectionLabel index="02" label="Companies & divisions" />
             <div className="mb-12 grid gap-6 lg:grid-cols-[0.9fr_1fr]">
@@ -94,7 +109,7 @@ export function BusinessDetailPage({ business, nextBusiness }: { business: Busin
             </div>
           </section>
         ) : null}
-        {business.platform ? (
+        {defaultPlatform ? (
           <section className="section-shell">
             <div className="grid gap-10 border border-stone-200 p-6 md:p-10 lg:grid-cols-[150px_minmax(0,520px)_auto] lg:items-center lg:gap-16">
               <div className="grid aspect-square place-items-center border border-emerald-950 bg-white p-6">
@@ -102,29 +117,35 @@ export function BusinessDetailPage({ business, nextBusiness }: { business: Busin
               </div>
               <div>
                 <h2 className="text-[clamp(30px,3vw,46px)] font-bold leading-[1.05] tracking-[-0.035em]">
-                  {business.platform.title}
+                  {defaultPlatform.title}
                 </h2>
-                <p className="mt-4 max-w-md text-stone-600">{business.platform.copy}</p>
+                <p className="mt-4 max-w-md text-stone-600">{defaultPlatform.copy}</p>
               </div>
               <Button asChild variant="outline" className="lg:justify-self-end">
-                <a href={business.platform.href} target="_blank" rel="noreferrer">{business.platform.label}</a>
+                <a href={defaultPlatform.href} target="_blank" rel="noreferrer">{defaultPlatform.label}</a>
               </Button>
             </div>
           </section>
         ) : null}
-        {business.slug === "real-estate" ? <RealEstateShowcase /> : null}
-        <BusinessExperienceSections business={business} />
+        {business.slug === "real-estate" ? <RealEstateShowcase platform={business.platform} /> : null}
+        {isCommerce ? <CommerceShowcase platform={business.platform} /> : null}
+        {isAgricultureFood ? <AgricultureFoodShowcase /> : null}
+        {isFinanceConsultancy ? <FinanceConsultancyShowcase /> : null}
+        {!isAgricultureFood && !isFinanceConsultancy && !isCommerce ? <BusinessExperienceSections business={business} /> : null}
       </main>
 
-      <section className="bg-green-soft px-5 py-20 md:px-8 md:py-28">
-        <div className="mx-auto grid max-w-[1000px] gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
-          <span>
-            <span className="next-business-label">Continue exploring</span>
-            <span className="next-business-title">{nextBusiness.shortTitle}</span>
-          </span>
-          <Link href={`/business/${nextBusiness.slug}`} className="next-business-arrow">
-            <span aria-hidden="true">
-              <ArrowUpRight className="size-9" />
+      <section className="bg-[#f5f6f3]">
+        <div className="section-shell grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+          <h2 className="max-w-xl text-[clamp(42px,5.8vw,84px)] font-bold leading-[1.05] tracking-[0]">
+            {nextBusiness.shortTitle}
+          </h2>
+          <Link href={`/business/${nextBusiness.slug}`} className="next-business-inline">
+            <span className="next-business-round-arrow" aria-hidden="true">
+              <ArrowUpRight className="size-5" />
+            </span>
+            <span>
+              <span className="next-business-label">Continue exploring</span>
+              <span className="next-business-copy">Explore {nextBusiness.title} and its role across the Bioture Group.</span>
             </span>
           </Link>
         </div>
@@ -133,5 +154,3 @@ export function BusinessDetailPage({ business, nextBusiness }: { business: Busin
     </>
   );
 }
-
-
