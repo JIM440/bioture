@@ -5,16 +5,9 @@ import { SectionLabel } from "@/components/section-label";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
-import { businesses } from "@/data/businesses";
+import { businesses, partnerLogos } from "@/data/businesses";
 
 const icons = [Building2, ShoppingBag, Leaf, Pickaxe, Factory, HeartPulse, Plane, Landmark];
-const partnerImages = [
-  "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=500&q=80",
-  "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=500&q=80",
-  "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=500&q=80",
-  "https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&w=500&q=80",
-  "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=500&q=80",
-];
 
 export default function BusinessesPage() {
   return (
@@ -108,7 +101,7 @@ export default function BusinessesPage() {
                             role="img"
                             aria-label={partner}
                             className="partner-image-tile"
-                            style={{ backgroundImage: `url("${partnerImages[(index + partnerIndex) % partnerImages.length]}")` }}
+                            style={{ backgroundImage: `url("${partnerLogos[(index + partnerIndex) % partnerLogos.length].image}")` }}
                           />
                         ))}
                       </div>

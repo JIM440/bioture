@@ -36,6 +36,33 @@ export type Business = {
   };
 };
 
+export const partnerLogos = [
+  {
+    name: "IJ",
+    image: "https://adgully.com/img/800/202104/ij.png.jpg",
+  },
+  {
+    name: "MWEB",
+    image: "https://soliditech.com/wp-content/uploads/2016/04/MWEB-Logo_New.png",
+  },
+  {
+    name: "Cell C",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Cell_C_New_2024_logo.svg/1280px-Cell_C_New_2024_logo.svg.png?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=thumbnail",
+  },
+  {
+    name: "Telkom",
+    image: "https://upload.wikimedia.org/wikipedia/en/9/94/Telkom_Logo_2025.png?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
+  },
+  {
+    name: "Partner network",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0mmDNm6Ka2r2s4UDm7pTYO4SS9jFPRdy4lvNd_TnXNg&s=10",
+  },
+  {
+    name: "Strategic partner",
+    image: "https://image.jimcdn.com/app/cms/image/transf/dimension=900x10000:format=jpg/path/s1084e755aa436055/image/i75efb6e8bd445d48/version/1524002210/image.jpg",
+  },
+];
+
 export const businesses: Business[] = [
   {
     index: "01",
@@ -50,12 +77,12 @@ export const businesses: Business[] = [
       "Bioture Real Estate develops luxury homes, prime land and considered property spaces that combine strategic locations, practical design and long-term investment value.",
     summary: "Developing residential, commercial and mixed-use assets that turn strategic locations into durable investment value.",
     partners: ["Landowners", "Developers", "Architects", "Investors", "Property buyers"],
-    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=90",
+    image: "/assets/real-estate/real-estate-hero.jpeg",
     divisions: [],
     approachTitle: "Real estate with a longer view.",
     approachCopy:
       "The corporate profile introduces the business, while a future dedicated property platform can host searchable land, houses and commercial listings.",
-    approachImage: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1400&q=88",
+    approachImage: "/assets/real-estate/real-estate-development-2.jpeg",
     actionTitle: "Turn location into lasting value.",
     actionCopy: "Speak with our property team about buying, selling, development or institutional opportunities.",
     actionHref: "/contact?subject=real-estate",
@@ -379,4 +406,3 @@ export const businesses: Business[] = [
 export function getBusiness(slug: string) {
   return businesses.find((business) => business.slug === slug);
 }
-

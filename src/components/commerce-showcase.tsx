@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { DivisionItemGrid } from "@/components/division-item-grid";
 import type { Business } from "@/data/businesses";
 
 const beverages = [
@@ -81,31 +82,27 @@ export function CommerceShowcase({ platform }: { platform?: Business["platform"]
           </p>
         </div>
         <CommerceFeature
-          category="01"
           title="Beverages"
           copy="Distinctive beverage products with carefully selected ingredients, consistent quality and strong retail potential."
-          partners="Ingredient suppliers, bottling partners, retail outlets, wellness distributors"
           image="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1800&q=90"
           href="/contact?subject=commerce"
           label="Shop now"
         />
       </section>
 
-      <CommerceProductGrid title="Beverage lines" products={beverages} columns="md:grid-cols-4" />
+      <DivisionItemGrid title="Beverage lines" items={beverages} columns="md:grid-cols-4" className="section-shell bg-white" />
 
       <section className="section-shell">
         <CommerceFeature
-          category="02"
           title="Fashion"
           copy="Fashion products that translate cultural expression, everyday utility and retail demand into wearable collections."
-          partners="Design studios, textile suppliers, retail boutiques, creative collaborators"
           image="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1800&q=90"
           href="/contact?subject=commerce"
           label="Shop now"
         />
       </section>
 
-      <CommerceProductGrid title="Fashion products" products={fashionItems} columns="sm:grid-cols-2 lg:grid-cols-4" />
+      <DivisionItemGrid title="Fashion products" items={fashionItems} columns="sm:grid-cols-2 lg:grid-cols-4" className="section-shell bg-white" />
 
       {platform ? (
         <section className="bg-[#f5f3e8]">
@@ -127,18 +124,14 @@ export function CommerceShowcase({ platform }: { platform?: Business["platform"]
 }
 
 function CommerceFeature({
-  category,
   title,
   copy,
-  partners,
   image,
   href,
   label,
 }: {
-  category: string;
   title: string;
   copy: string;
-  partners: string;
   image: string;
   href: string;
   label: string;
@@ -148,50 +141,15 @@ function CommerceFeature({
       <Image src={image} alt={title} fill sizes="100vw" className="object-cover transition duration-700 group-hover:scale-105" />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,.74),rgba(0,0,0,.24)_58%,rgba(0,0,0,.08))]" />
       <div className="relative z-10 flex min-h-[420px] max-w-2xl flex-col justify-center p-6 md:min-h-[520px] md:p-10">
-        <span className="mb-5 w-max bg-white/12 px-3 py-2 text-xs font-bold uppercase tracking-[0.15em] text-white backdrop-blur-sm">
-          Category {category}
-        </span>
         <h2 className="max-w-[620px] text-[clamp(42px,5vw,76px)] font-bold uppercase leading-[0.95] tracking-[0] text-white">
           {title}
         </h2>
         <p className="mt-5 max-w-md text-base font-bold leading-7 text-white/88">{copy}</p>
-        <p className="mt-5 max-w-md text-xs font-bold uppercase tracking-[0.14em] text-white/72">
-          Partners: {partners}
-        </p>
-        <Link href={href} className="mt-9 inline-flex w-max items-center gap-3 bg-white px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-emerald-950 hover:text-white">
+        <Link href={href} className="mt-9 inline-flex w-max items-center gap-3 bg-white px-8 py-4 text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-stone-100">
           {label}
           <ArrowUpRight className="size-4" aria-hidden="true" />
         </Link>
       </div>
     </article>
-  );
-}
-
-function CommerceProductGrid({
-  title,
-  products,
-  columns,
-}: {
-  title: string;
-  products: Array<{ name: string; copy: string; image: string }>;
-  columns: string;
-}) {
-  return (
-    <section className="section-shell bg-white">
-      <div className="mx-auto max-w-[1500px]">
-        <h2 className="max-w-3xl text-[clamp(34px,4.8vw,64px)] font-bold leading-[1.05] tracking-[0]">{title}</h2>
-        <div className={`mt-10 grid gap-4 ${columns}`}>
-          {products.map((product) => (
-            <article key={product.name}>
-              <div className="relative aspect-square overflow-hidden">
-                <Image src={product.image} alt={product.name} fill sizes="(min-width: 1024px) 25vw, 50vw" className="object-cover" />
-              </div>
-              <h3 className="mt-4 text-2xl font-bold leading-tight tracking-[0]">{product.name}</h3>
-              <p className="mt-2 text-sm leading-6 text-stone-600">{product.copy}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
   );
 }

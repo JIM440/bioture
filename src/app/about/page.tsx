@@ -4,7 +4,7 @@ import { Hero } from "@/components/hero";
 import { SectionLabel } from "@/components/section-label";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { businesses } from "@/data/businesses";
+import { businesses, partnerLogos } from "@/data/businesses";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -13,15 +13,6 @@ const executives = [
   ["02", "Chief Finance Officer", "Patrick Tchoumi", "patrick.tchoumi@bioturegroup.com", "Leads capital planning, financial stewardship, governance and group-wide reporting.", "https://images.unsplash.com/photo-1562788869-4ed32648eb72?auto=format&fit=crop&w=1200&q=90"],
   ["03", "Group Director, Strategy", "Clarisse Mballa", "clarisse.mballa@bioturegroup.com", "Shapes portfolio strategy, strategic partnerships and expansion into priority markets.", "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=90"],
   ["04", "Director, People & Culture", "Aurelien Fotso", "aurelien.fotso@bioturegroup.com", "Builds leadership capability, organizational culture and talent systems across the groups.", "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=1200&q=90"],
-];
-
-const partnerLogos = [
-  ["Microsoft", "https://logo.clearbit.com/microsoft.com"],
-  ["DHL", "https://logo.clearbit.com/dhl.com"],
-  ["Schneider Electric", "https://logo.clearbit.com/se.com"],
-  ["Afreximbank", "https://logo.clearbit.com/afreximbank.com"],
-  ["TotalEnergies", "https://logo.clearbit.com/totalenergies.com"],
-  ["Standard Chartered", "https://logo.clearbit.com/sc.com"],
 ];
 
 const howWeWork = [
@@ -151,14 +142,14 @@ export default function AboutPage() {
           <div className="mx-auto max-w-[1500px]">
             <SectionLabel index="07" label="Our Partnership Ecosystem" />
             <h2 className="mt-5 max-w-4xl text-[clamp(38px,5vw,74px)] font-bold leading-[1.05] tracking-[-0.04em]">Strategic relationships that help the group scale responsibly.</h2>
-            <div className="mt-10 grid gap-3 md:grid-cols-3">
-              {partnerLogos.map(([partner, logo]) => (
-                <div key={partner} className="partner-logo-card" title={partner} aria-label={partner}>
+            <div className="mt-8 grid gap-2 sm:grid-cols-3 lg:grid-cols-5">
+              {partnerLogos.map((partner) => (
+                <div key={partner.name} className="partner-logo-card" title={partner.name} aria-label={partner.name}>
                   <div
                     className="partner-logo-image"
                     role="img"
                     aria-hidden="true"
-                    style={{ backgroundImage: `url("${logo}")` }}
+                    style={{ backgroundImage: `url("${partner.image}")` }}
                   />
                 </div>
               ))}

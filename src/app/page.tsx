@@ -7,15 +7,7 @@ import { SectionLabel } from "@/components/section-label";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
-import { businesses } from "@/data/businesses";
-
-const partnerImages = [
-  "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=500&q=80",
-  "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=500&q=80",
-  "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=500&q=80",
-  "https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&w=500&q=80",
-  "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=500&q=80",
-];
+import { businesses, partnerLogos } from "@/data/businesses";
 
 const sustainabilityCards = [
   ["01", "Green energy", "Prioritising solar-ready facilities, efficient equipment and lower-emission power choices where operations allow."],
@@ -134,15 +126,16 @@ export default function Home() {
         <section className="bg-white px-5 py-16 md:px-8 md:py-24">
           <div className="mx-auto max-w-[1500px]">
             <SectionLabel index="02" label="Partners" />
-            <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {partnerImages.map((image, index) => (
+            <div className="mt-8 grid gap-2 sm:grid-cols-3 lg:grid-cols-5">
+              {partnerLogos.map((partner) => (
                 <div
-                  key={image}
-                  className="partner-image-tile min-h-[160px]"
+                  key={partner.name}
+                  className="partner-logo-card"
                   role="img"
-                  aria-label={`Partner ${index + 1}`}
-                  style={{ backgroundImage: `url("${image}")` }}
-                />
+                  aria-label={partner.name}
+                >
+                  <div className="partner-logo-image" aria-hidden="true" style={{ backgroundImage: `url("${partner.image}")` }} />
+                </div>
               ))}
             </div>
           </div>
@@ -272,4 +265,3 @@ export default function Home() {
     </>
   );
 }
-

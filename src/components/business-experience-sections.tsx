@@ -1,5 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import { DivisionItemGrid, type DivisionItem } from "@/components/division-item-grid";
 import type { Business } from "@/data/businesses";
 
 const sectionsBySlug: Record<string, Array<{ title: string; copy: string; image: string; href?: string; label?: string }>> = {
@@ -83,11 +85,168 @@ const sectionsBySlug: Record<string, Array<{ title: string; copy: string; image:
   ],
 };
 
-const agricultureCards = ["Cassava and roots", "Plantain and banana", "Vegetables", "Animal husbandry"];
+const agricultureCards = ["Cassava and roots", "Plantain and banana", "Corn", "Animal husbandry"];
 const foodCards = ["Cleaned grains", "Packaged staples", "Ready-to-cook foods", "Preserved produce"];
+
+const resourceCardGroups: Record<string, DivisionItem[]> = {
+  "Mining & minerals": [
+    {
+      name: "Bauxite",
+      copy: "Mineral opportunities assessed through disciplined partnerships and responsible participation.",
+      image: "https://images.unsplash.com/photo-1578319439584-104c94d37305?auto=format&fit=crop&w=900&q=90",
+    },
+    {
+      name: "Copper",
+      copy: "Resource development routes shaped around technical capability, market demand and accountable operations.",
+      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=900&q=90",
+    },
+    {
+      name: "Gold",
+      copy: "High-value mineral participation with attention to governance, local value and long-term stewardship.",
+      image: "https://images.unsplash.com/photo-1610375461369-d613b5640e96?auto=format&fit=crop&w=900&q=90",
+    },
+    {
+      name: "Concession partnerships",
+      copy: "Partnership models for licence holders, operators and technical resource teams.",
+      image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=900&q=90",
+    },
+  ],
+  "Oil & gas": [
+    {
+      name: "Exploration",
+      copy: "Participation pathways across early-stage energy opportunities and technical partnerships.",
+      image: "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=900&q=90",
+    },
+    {
+      name: "Production",
+      copy: "Project participation built around operational discipline, safety and reliable execution.",
+      image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=900&q=90",
+    },
+    {
+      name: "Refining",
+      copy: "Downstream opportunities that connect resource output with practical market supply.",
+      image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=900&q=90",
+    },
+    {
+      name: "Energy supply",
+      copy: "Supply relationships for industrial buyers, infrastructure partners and priority markets.",
+      image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=900&q=90",
+    },
+  ],
+};
+
+const wellnessCardGroups: Record<string, DivisionItem[]> = {
+  "Biomedicals & pharmaceuticals": [
+    {
+      name: "Biomedical research support",
+      copy: "Research partnerships, clinical insight and specialist coordination for stronger health outcomes.",
+      image: "https://images.unsplash.com/photo-1576671081837-49000212a370?auto=format&fit=crop&w=900&q=90",
+    },
+    {
+      name: "Pharmaceutical access",
+      copy: "Practical medicine access, distribution readiness and pharmacy-channel support.",
+      image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=900&q=90",
+    },
+    {
+      name: "Laboratory partnerships",
+      copy: "Diagnostic and laboratory relationships that support reliable testing and research workflows.",
+      image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=900&q=90",
+    },
+    {
+      name: "Disease-control systems",
+      copy: "Systems thinking for prevention, monitoring and coordinated disease-response programmes.",
+      image: "https://images.unsplash.com/photo-1581093458791-9d09cc8c9f39?auto=format&fit=crop&w=900&q=90",
+    },
+  ],
+  Cosmetics: [
+    {
+      name: "Skin care",
+      copy: "Personal care products shaped around quality, safety and everyday customer trust.",
+      image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=900&q=90",
+    },
+    {
+      name: "Fragrance",
+      copy: "Distinctive scent products built for memorable retail and personal-care experiences.",
+      image: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=90",
+    },
+    {
+      name: "Beauty products",
+      copy: "Market-ready beauty lines with strong presentation and dependable formulation standards.",
+      image: "https://images.unsplash.com/photo-1522338242992-e1a54906a8da?auto=format&fit=crop&w=900&q=90",
+    },
+    {
+      name: "Safety-led formulation",
+      copy: "Ingredient choices, adviser input and review processes centred on customer wellbeing.",
+      image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=900&q=90",
+    },
+  ],
+};
+
+const manufacturingCardGroups: Record<string, DivisionItem[]> = {
+  Manufacturing: [
+    {
+      name: "Consumer products",
+      copy: "Practical goods designed around everyday use, reliable quality and market-ready presentation.",
+      image: "https://images.unsplash.com/photo-1565514020179-026b92b84bb6?auto=format&fit=crop&w=900&q=90",
+    },
+    {
+      name: "Industrial equipment",
+      copy: "Equipment concepts and production systems for practical commercial and industrial needs.",
+      image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=900&q=90",
+    },
+    {
+      name: "Private-label production",
+      copy: "Production partnerships that help clients take branded products from idea to shelf.",
+      image: "https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&w=900&q=90",
+    },
+    {
+      name: "Quality systems",
+      copy: "Process controls, supplier standards and review routines built for dependable output.",
+      image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=900&q=90",
+    },
+  ],
+  "Gadgets & artificial intelligence": [
+    {
+      name: "Smart devices",
+      copy: "Connected device concepts designed to support practical work and daily productivity.",
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=90",
+    },
+    {
+      name: "Applied AI tools",
+      copy: "AI-enabled tools that help teams automate work, make decisions and improve service delivery.",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=90",
+    },
+    {
+      name: "Hardware concepts",
+      copy: "Product concepts that combine hardware design, sourcing and usability for priority sectors.",
+      image: "https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&w=900&q=90",
+    },
+    {
+      name: "Product automation",
+      copy: "Automation ideas that reduce repetitive work and improve operational reliability.",
+      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=900&q=90",
+    },
+  ],
+};
 
 export function BusinessExperienceSections({ business }: { business: Business }) {
   const sections = sectionsBySlug[business.slug] ?? [];
+
+  if (business.slug === "transport-logistics") {
+    return <TransportLogisticsSections business={business} />;
+  }
+
+  if (business.slug === "resources-energy") {
+    return <ResourceEnergySections business={business} />;
+  }
+
+  if (business.slug === "health-wellness") {
+    return <HealthWellnessSections business={business} />;
+  }
+
+  if (business.slug === "manufacturing") {
+    return <ManufacturingSections business={business} />;
+  }
 
   if (sections.length === 0) {
     return null;
@@ -139,11 +298,158 @@ function DetailList({ title, items }: { title: string; items: string[] }) {
       <h3 className="text-3xl font-bold tracking-[-0.03em]">{title}</h3>
       <div className="mt-8 grid gap-3 sm:grid-cols-2">
         {items.map((item) => (
-          <div key={item} className="border-t border-stone-300 pt-4 font-bold text-stone-800">
+          <div key={item} className="border-t border-stone-300 pt-4 font-bold leading-tight tracking-[0] text-stone-900 !text-[24px] md:!text-[30px]">
             {item}
           </div>
         ))}
       </div>
     </div>
+  );
+}
+
+function TransportLogisticsSections({ business }: { business: Business }) {
+  const [logistics, aviation, automobile] = business.divisions;
+  const rowDivisions = [logistics, automobile].filter(Boolean);
+
+  return (
+    <section className="bg-white px-5 py-20 md:px-8 md:py-28">
+      <div className="mx-auto grid max-w-[1500px] gap-16">
+        {rowDivisions.map((division, index) => (
+          <article key={division.title} className="transport-feature-row">
+            <div className={index % 2 === 1 ? "transport-feature-media lg:order-2" : "transport-feature-media"}>
+              <Image src={division.image} alt={division.title} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+            </div>
+            <div className="transport-feature-copy">
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.15em] text-emerald-950">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h2>{division.title}</h2>
+              <p>{division.description}</p>
+              <Link href={`/contact?subject=${index === 0 ? "transport-logistics" : "automobile"}`} className="division-text-cta">
+                {index === 0 ? "Plan logistics" : "Explore automobile solutions"}
+                <ArrowUpRight className="size-4" aria-hidden="true" />
+              </Link>
+            </div>
+          </article>
+        ))}
+
+        {aviation ? (
+          <FeatureOverlay
+            title={aviation.title}
+            copy={aviation.description}
+            image={aviation.image}
+            href="/contact?subject=aviation-transit"
+            label="Discuss aviation transit"
+          />
+        ) : null}
+      </div>
+    </section>
+  );
+}
+
+function ResourceEnergySections({ business }: { business: Business }) {
+  return (
+    <section className="bg-white px-5 py-20 md:px-8 md:py-28">
+      <div className="mx-auto grid max-w-[1500px] gap-16">
+        {business.divisions.map((division) => (
+          <div key={division.title} className="grid gap-10">
+            <FeatureOverlay
+              title={division.title}
+              copy={division.description}
+              image={division.image}
+              href={business.actionHref}
+              label={business.actionLabel}
+            />
+            <ProductCardGrid
+              title={`${division.title} focus`}
+              items={resourceCardGroups[division.title] ?? []}
+            />
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ManufacturingSections({ business }: { business: Business }) {
+  return (
+    <section className="bg-white px-5 py-20 md:px-8 md:py-28">
+      <div className="mx-auto grid max-w-[1500px] gap-16">
+        {business.divisions.map((division) => (
+          <div key={division.title} className="grid gap-10">
+            <FeatureOverlay
+              title={division.title}
+              copy={division.description}
+              image={division.image}
+              href={business.actionHref}
+              label={business.actionLabel}
+            />
+            <ProductCardGrid
+              title={`${division.title} focus`}
+              items={manufacturingCardGroups[division.title] ?? []}
+            />
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function HealthWellnessSections({ business }: { business: Business }) {
+  return (
+    <section className="bg-white px-5 py-20 md:px-8 md:py-28">
+      <div className="mx-auto grid max-w-[1500px] gap-16">
+        {business.divisions.map((division) => (
+          <div key={division.title} className="grid gap-10">
+            <FeatureOverlay
+              title={division.title}
+              copy={division.description}
+              image={division.image}
+              href={business.actionHref}
+              label={business.actionLabel}
+            />
+            <ProductCardGrid
+              title={`${division.title} focus`}
+              items={wellnessCardGroups[division.title] ?? []}
+            />
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ProductCardGrid({ title, items }: { title: string; items: DivisionItem[] }) {
+  return <DivisionItemGrid title={title} items={items} />;
+}
+
+function FeatureOverlay({
+  title,
+  copy,
+  image,
+  href,
+  label,
+}: {
+  title: string;
+  copy: string;
+  image: string;
+  href: string;
+  label: string;
+}) {
+  return (
+    <article className="group relative min-h-[460px] overflow-hidden bg-stone-950 text-white md:min-h-[560px]">
+      <Image src={image} alt={title} fill sizes="100vw" className="object-cover transition duration-700 group-hover:scale-105" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,.76),rgba(0,0,0,.34)_58%,rgba(0,0,0,.1))]" />
+      <div className="relative z-10 flex min-h-[460px] max-w-3xl flex-col justify-center p-6 md:min-h-[560px] md:p-10">
+        <h2 className="max-w-3xl text-[clamp(38px,5vw,74px)] font-bold uppercase leading-[0.98] tracking-[0] text-white">
+          {title}
+        </h2>
+        <p className="mt-5 max-w-xl text-base font-bold leading-7 text-white/88">{copy}</p>
+        <Link href={href} className="division-text-cta division-text-cta-light">
+          {label}
+          <ArrowUpRight className="size-4" aria-hidden="true" />
+        </Link>
+      </div>
+    </article>
   );
 }

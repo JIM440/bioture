@@ -122,8 +122,8 @@ a[role="button"] {
 
 .statement-grid {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 8vw;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  gap: clamp(36px, 7vw, 112px);
   margin-top: 34px;
 }
 
@@ -137,15 +137,16 @@ a[role="button"] {
 .section-title {
   max-width: none;
   font-family: var(--font-heading);
-  font-size: clamp(46px, 5vw, 72px);
+  font-size: clamp(38px, 4.2vw, 62px);
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: 0;
+  text-wrap: balance;
 }
 
 .statement-grid p {
   color: var(--muted);
-  font-size: clamp(18px, 1.5vw, 24px);
+  font-size: clamp(17px, 1.25vw, 21px);
   line-height: 1.45;
 }
 
@@ -574,28 +575,36 @@ p {
 }
 
 .next-business-inline {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  display: inline-grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   color: #111;
   width: min(100%, 640px);
   justify-self: start;
+  transition: color 0.22s ease;
 }
 
 .next-business-round-arrow {
-  display: grid;
-  width: 42px;
-  aspect-ratio: 1;
+  display: inline-grid;
   place-items: center;
-  border-radius: 999px;
-  background: #111;
-  color: #fff;
+  color: currentColor;
   transition: 0.22s ease;
 }
 
+.next-business-inline:hover {
+  color: var(--green);
+}
+
+.next-business-inline:hover .next-business-label,
+.next-business-inline:hover .next-business-copy {
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1.5px;
+}
+
 .next-business-inline:hover .next-business-round-arrow {
-  background: var(--green);
   transform: translate(3px, -3px);
 }
 
@@ -901,37 +910,31 @@ p {
 
 .partner-logo-card {
   display: grid;
-  min-height: 128px;
+  min-height: 74px;
   place-items: center;
-  border: 1px solid var(--line);
-  background: #fff;
-  padding: 28px;
+  background: transparent;
+  padding: 0;
 }
 
 .partner-logo-image {
-  width: min(170px, 72%);
-  aspect-ratio: 3 / 1;
+  width: min(168px, 84%);
+  aspect-ratio: 3.2 / 1;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  filter: grayscale(1);
-  opacity: 0.82;
-  transition: filter 0.22s ease, opacity 0.22s ease, transform 0.22s ease;
-}
-
-.partner-logo-card:hover .partner-logo-image {
-  filter: grayscale(0);
+  filter: none;
   opacity: 1;
-  transform: translateY(-2px);
 }
 
 .partner-image-tile {
-  min-height: 86px;
-  border: 1px solid var(--line);
-  background-color: #fff;
+  min-height: 64px;
+  border: 0;
+  background-color: transparent;
   background-position: center;
-  background-size: cover;
-  filter: grayscale(0.25);
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter: none;
+  opacity: 1;
 }
 
 .finance-profile-heading {
@@ -956,6 +959,85 @@ p {
 .real-estate-profile-heading {
   font-size: clamp(36px, 4.5vw, 62px) !important;
   line-height: 1.08 !important;
+}
+
+.partner-strip-section {
+  border-top: 1px solid var(--line);
+  background: #fff;
+}
+
+.transport-feature-row {
+  display: grid;
+  gap: clamp(28px, 5vw, 72px);
+}
+
+.transport-feature-media {
+  position: relative;
+  min-height: clamp(320px, 44vw, 560px);
+  overflow: hidden;
+  background: var(--off);
+}
+
+.transport-feature-copy {
+  display: flex;
+  max-width: 680px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.transport-feature-copy h2 {
+  margin-top: 20px;
+  font-size: clamp(36px, 5vw, 70px);
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+.transport-feature-copy p {
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: clamp(16px, 1.4vw, 19px);
+  line-height: 1.7;
+}
+
+.division-text-cta {
+  display: inline-flex;
+  width: max-content;
+  align-items: center;
+  gap: 10px;
+  margin-top: 32px;
+  border: 1px solid var(--green);
+  padding: 14px 18px;
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.division-text-cta:hover {
+  border-color: var(--green-dark);
+  background: var(--green);
+  color: #fff;
+}
+
+.division-text-cta-light {
+  border-color: #fff;
+  color: #fff;
+}
+
+.division-text-cta-light:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+}
+
+@media (min-width: 1024px) {
+  .transport-feature-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

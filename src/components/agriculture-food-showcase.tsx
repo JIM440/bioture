@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { DivisionItemGrid, type DivisionItem } from "@/components/division-item-grid";
 
 const focusCards = [
   {
@@ -31,40 +32,48 @@ const processingFeature = {
   label: "Explore food processing",
 };
 
-const agricultureProducts = [
+const agricultureProducts: DivisionItem[] = [
   {
     name: "Cassava and roots",
+    copy: "Staple root crops and cassava-led product opportunities for reliable local food supply.",
     image: "https://images.unsplash.com/photo-1598514983318-2f64f8f4796c?auto=format&fit=crop&w=900&q=90",
   },
   {
     name: "Plantain and banana",
+    copy: "Fresh produce lines supporting household demand, retail channels and value-added processing.",
     image: "https://images.unsplash.com/photo-1528825871115-3581a5387919?auto=format&fit=crop&w=900&q=90",
   },
   {
     name: "Corn",
+    copy: "Crop production for food staples, animal feed opportunities and processing inputs.",
     image: "https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=900&q=90",
   },
   {
     name: "Animal husbandry",
+    copy: "Livestock systems designed around responsible care, food supply and practical farm productivity.",
     image: "https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=900&q=90",
   },
 ];
 
-const processedProducts = [
+const processedProducts: DivisionItem[] = [
   {
     name: "Plantain chips",
+    copy: "Snack-ready processed produce with practical packaging and retail appeal.",
     image: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?auto=format&fit=crop&w=900&q=90",
   },
   {
     name: "Coffee",
+    copy: "Processed beverage products with attention to consistency, sourcing and presentation.",
     image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=900&q=90",
   },
   {
     name: "Packaged staples",
+    copy: "Everyday food staples cleaned, prepared and packaged for dependable market supply.",
     image: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=900&q=90",
   },
   {
     name: "Dried produce",
+    copy: "Preserved produce lines that extend shelf life and reduce post-harvest waste.",
     image: "https://images.unsplash.com/photo-1600166898405-da9535204843?auto=format&fit=crop&w=900&q=90",
   },
 ];
@@ -90,9 +99,9 @@ export function AgricultureFoodShowcase() {
       </section>
 
       <FeatureSection section={agricultureFeature} index={0} />
-      <ProductGrid title="Agriculture products" products={agricultureProducts} />
+      <DivisionItemGrid title="Agriculture products" items={agricultureProducts} className="bg-white px-5 pb-20 md:px-8 md:pb-28" />
       <FeatureSection section={processingFeature} index={1} />
-      <ProductGrid title="Processed food lines" products={processedProducts} />
+      <DivisionItemGrid title="Processed food lines" items={processedProducts} className="bg-white px-5 pb-20 md:px-8 md:pb-28" />
     </>
   );
 }
@@ -116,26 +125,6 @@ function FeatureSection({ section, index }: { section: typeof agricultureFeature
           </Link>
         </div>
       </article>
-    </section>
-  );
-}
-
-function ProductGrid({ title, products }: { title: string; products: Array<{ name: string; image: string }> }) {
-  return (
-    <section className="bg-white px-5 pb-20 md:px-8 md:pb-28">
-      <div className="mx-auto max-w-[1500px]">
-        <h2 className="max-w-3xl text-[clamp(34px,4.8vw,64px)] font-bold leading-[1.05] tracking-[0]">{title}</h2>
-        <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
-          {products.map((product) => (
-            <div key={product.name}>
-              <div className="relative aspect-square overflow-hidden">
-                <Image src={product.image} alt={product.name} fill sizes="(min-width: 768px) 25vw, 50vw" className="object-cover" />
-              </div>
-              <p className="mt-3 text-sm font-bold leading-5 text-stone-900">{product.name}</p>
-            </div>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }
