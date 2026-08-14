@@ -156,7 +156,7 @@ export default function Home() {
         </section>
 
         <section id="sustainability" className="bg-white px-5 pt-20 md:px-8 md:pt-28">
-          <div className="mx-auto grid max-w-[1500px] overflow-hidden border border-stone-200 lg:grid-cols-[0.92fr_1.08fr]">
+          <div className="mx-auto grid max-w-[1500px] overflow-hidden lg:grid-cols-[0.92fr_1.08fr]">
             <div className="relative min-h-[420px] bg-cover bg-center lg:min-h-[620px]" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=1600&q=90')" }}>
               <div className="absolute inset-0 bg-black/18" />
             </div>
@@ -180,7 +180,7 @@ export default function Home() {
         <section className="bg-white px-5 pb-20 pt-6 md:px-8 md:pb-28">
           <div className="mx-auto grid max-w-[1500px] gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {sustainabilityCards.map(([index, title, copy]) => (
-              <article key={title} className="border border-stone-300 bg-[#f5f6f3] p-5">
+              <article key={title} className="bg-[#f5f6f3] p-5">
                 <span className="font-mono text-xs font-bold uppercase tracking-[0.15em] text-emerald-950">{index}</span>
                 <strong className="sustainability-card-title mt-5 block font-bold tracking-[0]">{title}</strong>
                 <p className="mt-3 text-sm leading-6 text-stone-600">{copy}</p>

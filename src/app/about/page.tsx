@@ -65,7 +65,7 @@ export default function AboutPage() {
             <SectionLabel index="02" label="Bioture at a glance" />
             <div className="mt-10 grid grid-cols-2 gap-3 xl:grid-cols-4">
               {glanceStats.map(({ label, value, Icon }) => (
-                <article key={label} className="border border-stone-300 bg-white p-4 sm:p-6">
+                <article key={label} className="bg-white p-4 sm:p-6">
                   <div className="flex items-start justify-between gap-3">
                     <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-500 sm:text-xs sm:tracking-[0.15em]">{label}</p>
                     <span className="grid size-9 shrink-0 place-items-center bg-green-soft text-emerald-950 sm:size-10">
@@ -164,7 +164,7 @@ export default function AboutPage() {
               <h2>A multidisciplinary team guiding the wider Bioture ecosystem.</h2>
               <p>Each executive supports the operating groups with focused expertise, shared governance and a commitment to measurable performance.</p>
             </div>
-            <div className="mt-16 divide-y divide-stone-300 border-y border-stone-300">
+            <div className="mt-16 divide-y divide-stone-300">
               {executives.map(([count, role, name, email, copy, image]) => (
                 <article key={role} className="team-row grid gap-5 py-7 transition md:grid-cols-[48px_112px_minmax(220px,0.75fr)_1fr] md:items-center md:px-5">
                   <div className="font-mono text-xs font-medium uppercase tracking-[0.15em] text-emerald-950">{count}</div>
@@ -207,7 +207,7 @@ export default function AboutPage() {
                 ["03", "Reliability", "We keep commitments and build relationships that last."],
                 ["04", "Innovation", "We seek better ways to create meaningful solutions."],
               ].map(([index, title, copy]) => (
-                <article key={title} className="border border-stone-200 bg-white p-6">
+                <article key={title} className="bg-white p-6">
                   <span className="font-mono text-xs uppercase tracking-[0.15em] text-stone-500">{index}</span>
                   <h3 className="mt-10 text-2xl font-bold">{title}</h3>
                   <p className="mt-3 text-stone-700">{copy}</p>

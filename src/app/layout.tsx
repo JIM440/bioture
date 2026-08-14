@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { BackToTop } from "@/components/back-to-top";
+import { GoogleTranslate } from "@/components/google-translate";
 import { SiteMotion } from "@/components/site-motion";
 import "./globals.css";
 
@@ -25,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth antialiased" data-scroll-behavior="smooth">
       <body>
+        <GoogleTranslate />
         <SiteMotion />
         {children}
         <BackToTop />

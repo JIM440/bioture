@@ -9,6 +9,7 @@
   --off: #f5f6f3;
   --muted: #616761;
   --line: #dfe3dd;
+  --image-surface: #e8e9e4;
   --background: #fff;
   --foreground: #000;
   --font-aa-sans: "AA Smart Sans", "AA Sans", "AASans", "Manrope", Arial, sans-serif;
@@ -108,6 +109,17 @@ a[role="button"] {
   color: #fff;
 }
 
+#google_translate_element,
+.goog-te-banner-frame,
+.goog-te-gadget,
+.skiptranslate {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
 .section-shell {
   margin-inline: auto;
   max-width: 1500px;
@@ -156,7 +168,7 @@ a[role="button"] {
   min-height: 550px;
   overflow: hidden;
   color: #fff;
-  background: #111;
+  background: var(--image-surface);
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.08);
   transition: box-shadow 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -275,7 +287,7 @@ footer div>a:hover {
 }
 
 .bg-stone-950 {
-  background-color: var(--green) !important;
+  background-color: var(--image-surface) !important;
 }
 
 .text-stone-500,
@@ -287,7 +299,16 @@ footer div>a:hover {
 .site-legacy-hero h1,
 main h1,
 main h2,
-main h3 {
+main h3,
+main h4,
+main h5,
+main h6,
+.font-serif,
+.section-title,
+.statement-grid h2,
+.real-estate-showcase-heading,
+main article strong,
+main article .font-bold {
   font-family: var(--font-heading) !important;
 }
 
@@ -766,7 +787,6 @@ p {
 
 .business-jump-card {
   min-height: 150px;
-  border: 1px solid var(--line);
   padding: clamp(18px, 2vw, 26px);
   display: grid;
   grid-template-rows: auto auto 1fr;

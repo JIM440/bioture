@@ -7,24 +7,24 @@ const wrap = "mx-auto w-[min(1500px,calc(100%_-_28px))] md:w-[min(1500px,calc(10
 
 const propertyTypes = [
   {
-    title: "Contemporary family residence",
-    image: "/assets/real-estate/real-estate-residence-1.jpeg",
-    meta: "Residence",
+    title: "Contemporary Family Villa",
+    image: "/assets/real-estate/real-estate-contemporary-family-villa-rehp3539.jpeg",
+    meta: "Villa",
   },
   {
-    title: "Urban villa concept",
-    image: "/assets/real-estate/real-estate-residence-2.jpeg",
-    meta: "Residence",
+    title: "Modern Urban Villa",
+    image: "/assets/real-estate/real-estate-modern-urban-villa-xcae7042.jpeg",
+    meta: "Villa",
   },
   {
-    title: "Multi-residential living",
-    image: "/assets/real-estate/real-estate-rental.jpeg",
-    meta: "Development",
+    title: "Modern Apartment Residence",
+    image: "/assets/real-estate/real-estate-modern-apartment-residence-jnty5592.jpeg",
+    meta: "Apartments",
   },
   {
-    title: "Modern residential development",
-    image: "/assets/real-estate/real-estate-development-1.jpeg",
-    meta: "Development",
+    title: "Modern Gated Residential Estate",
+    image: "/assets/real-estate/real-estate-modern-gated-residential-estate-ngnj5154.jpeg",
+    meta: "Residential Estate",
   },
 ];
 
@@ -64,13 +64,13 @@ const storyRows = [
     label: "02 — KITCHENS & DINING",
     title: "Where everyday life comes together.",
     copy: "Practical, refined spaces where preparation, dining and gathering are brought together through considered layouts and durable finishes.",
-    image: "/assets/real-estate/real-estate-kitchen-2.jpeg",
+    image: "/assets/real-estate/real-estate-kitchen-dining-nkgc2418.jpeg",
   },
   {
     label: "03 — BEDROOMS",
     title: "Calm by design.",
     copy: "Private rooms shaped around rest, ventilation, comfort and a consistent finish standard throughout the residence.",
-    image: "/assets/real-estate/real-estate-bedroom-2.jpeg",
+    image: "/assets/real-estate/real-estate-bedroom-tuhh9654.jpeg",
   },
   {
     label: "04 — BATHROOMS",
@@ -109,6 +109,14 @@ const amenities = [
     title: "Secure Parking & Garages",
     image: "/assets/real-estate/real-estate-garage.jpeg",
   },
+  {
+    title: "Terraces & Outdoor Living",
+    image: "/assets/real-estate/real-estate-terraces-outdoor-living.jpeg",
+  },
+  {
+    title: "Landscaped Grounds",
+    image: "/assets/real-estate/real-estate-landscaped-grounds.jpeg",
+  },
 ];
 
 const investmentCards = [
@@ -127,10 +135,10 @@ const partnerCards = [
 
 const gallery = [
   "/assets/real-estate/real-estate-gallery-house-1.jpeg",
-  "/assets/real-estate/real-estate-gallery-room-1.jpeg",
-  "/assets/real-estate/real-estate-gallery-rental.jpeg",
-  "/assets/real-estate/real-estate-gallery-kitchen.jpeg",
-  "/assets/real-estate/real-estate-gallery-house-2.jpeg",
+  "/assets/real-estate/real-estate-gallery-uqec6202.jpeg",
+  "/assets/real-estate/real-estate-gallery-kiis1555.jpeg",
+  "/assets/real-estate/real-estate-gallery-xrec5797.jpeg",
+  "/assets/real-estate/real-estate-gallery-jide9046.jpeg",
   "/assets/real-estate/real-estate-gallery-indoor.jpeg",
 ];
 
@@ -148,9 +156,9 @@ export function RealEstateShowcase({ platform: _platform }: { platform?: Busines
               Bioture Real Estate develops and presents residential, commercial and land opportunities shaped around strategic locations, considered design and long-term value.
             </p>
           </div>
-          <div className="grid border-t border-stone-300 md:grid-cols-2">
+          <div className="grid grid-cols-2 gap-4 md:gap-6">
             {capabilities.map(([title, copy]) => (
-              <div key={title} className="border-b border-stone-300 py-5 md:odd:border-r md:odd:pr-6 md:even:pl-6">
+              <div key={title} className="py-5">
                 <strong className="block text-lg font-bold text-black">{title}</strong>
                 <span className="mt-1 block text-sm leading-6 text-stone-600">{copy}</span>
               </div>
@@ -176,10 +184,10 @@ export function RealEstateShowcase({ platform: _platform }: { platform?: Busines
                 key={type.title}
                 className={
                   index === 0
-                    ? "group relative min-h-[300px] overflow-hidden bg-black text-white md:col-span-2 lg:col-span-1 lg:row-span-2"
+                    ? "group relative min-h-[300px] overflow-hidden bg-[#e8e9e4] text-white md:col-span-2 lg:col-span-1 lg:row-span-2"
                     : index === 3
-                      ? "group relative min-h-[300px] overflow-hidden bg-black text-white lg:col-span-2"
-                      : "group relative min-h-[300px] overflow-hidden bg-black text-white"
+                      ? "group relative min-h-[300px] overflow-hidden bg-[#e8e9e4] text-white lg:col-span-2"
+                      : "group relative min-h-[300px] overflow-hidden bg-[#e8e9e4] text-white"
                 }
               >
                 <Image src={type.image} alt={type.title} fill sizes="(min-width: 1024px) 34vw, 50vw" className="object-cover" />
@@ -210,7 +218,7 @@ export function RealEstateShowcase({ platform: _platform }: { platform?: Busines
             {experienceCards.map((card, index) => (
               <article
                 key={card.title}
-                className={index === 0 ? "relative min-h-[330px] overflow-hidden bg-black text-white md:col-span-2 lg:col-span-1 lg:row-span-2" : "relative min-h-[330px] overflow-hidden bg-black text-white"}
+                className={index === 0 ? "relative min-h-[330px] overflow-hidden bg-[#e8e9e4] text-white md:col-span-2 lg:col-span-1 lg:row-span-2" : "relative min-h-[330px] overflow-hidden bg-[#e8e9e4] text-white"}
               >
                 <Image src={card.image} alt={card.title} fill sizes="(min-width: 1024px) 55vw, 100vw" className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/64 via-transparent to-transparent" />
@@ -237,7 +245,7 @@ export function RealEstateShowcase({ platform: _platform }: { platform?: Busines
           <div className="mt-[75px] grid gap-[75px]">
             {storyRows.map((space, index) => (
               <article key={space.title} className="grid gap-9 lg:grid-cols-2 lg:items-center lg:gap-[72px]">
-                <div className={index % 2 === 1 ? "relative h-[380px] overflow-hidden lg:order-2 lg:h-[510px]" : "relative h-[380px] overflow-hidden lg:h-[510px]"}>
+                <div className={index % 2 === 1 ? "relative h-[380px] overflow-hidden bg-[#e8e9e4] lg:order-2 lg:h-[510px]" : "relative h-[380px] overflow-hidden bg-[#e8e9e4] lg:h-[510px]"}>
                   <Image src={space.image} alt={space.title} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
                 </div>
                 <div>
@@ -264,7 +272,7 @@ export function RealEstateShowcase({ platform: _platform }: { platform?: Busines
           </p>
           <div className="mt-[46px] grid gap-[14px] md:grid-cols-2 lg:grid-cols-3">
             {amenities.map((space) => (
-              <article key={space.title} className="relative h-[300px] overflow-hidden bg-black text-white lg:h-[360px]">
+              <article key={space.title} className="relative h-[300px] overflow-hidden bg-[#e8e9e4] text-white lg:h-[360px]">
                 <Image src={space.image} alt={space.title} fill sizes="(min-width: 1024px) 33vw, 50vw" className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/62 via-transparent to-transparent" />
                 <strong className="absolute bottom-5 left-[22px] right-[22px] z-10 block !text-[18px] font-bold leading-tight tracking-[0] text-white">{space.title}</strong>
@@ -283,9 +291,9 @@ export function RealEstateShowcase({ platform: _platform }: { platform?: Busines
           <p className="mt-6 max-w-[760px] text-[19px] leading-8 text-stone-700">
             Beyond finished homes, Bioture Real Estate provides a route into property acquisition, strategic land and development partnerships.
           </p>
-          <div className="mt-12 grid gap-px bg-[#cfd5cc] md:grid-cols-3">
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
             {investmentCards.map(([index, title, copy]) => (
-              <article key={title} className="min-h-[260px] bg-[#f4f2ec] p-[34px]">
+              <article key={title} className="min-h-[260px] p-[34px]">
                 <span className="font-mono text-xs uppercase tracking-[0.16em] text-emerald-950">{index}</span>
                 <p className="mt-[35px] !text-[31px] font-bold leading-tight tracking-[0] text-black">{title}</p>
                 <p className="mt-3 text-sm leading-6 text-stone-600">{copy}</p>
@@ -309,7 +317,7 @@ export function RealEstateShowcase({ platform: _platform }: { platform?: Busines
             {gallery.map((image, index) => (
               <div
                 key={image}
-                className="relative min-h-[300px] overflow-hidden lg:min-h-0"
+                className="relative min-h-[300px] overflow-hidden bg-[#e8e9e4] lg:min-h-0"
               >
                 <Image src={image} alt={`Bioture Real Estate gallery image ${index + 1}`} fill sizes="(min-width: 1024px) 33vw, 50vw" className="object-cover" />
               </div>
@@ -336,7 +344,7 @@ export function RealEstateShowcase({ platform: _platform }: { platform?: Busines
             </Link>
           </div>
 
-          <div className="mt-[46px] grid gap-px border border-stone-300 bg-stone-300 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-[46px] grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {partnerCards.map(([index, title, copy]) => (
               <article key={title} className="min-h-[260px] bg-white p-[34px]">
                 <span className="block font-mono text-[11px] uppercase tracking-[0.16em] text-emerald-950">{index}</span>

@@ -15,6 +15,55 @@ const navItems = [
   { href: "/contact?subject=general-enquiry", label: "Contact" },
 ];
 
+const languageCodes = {
+  EN: "en",
+  FR: "fr",
+  ES: "es",
+} as const;
+
+function getStoredLanguage() {
+  if (typeof document === "undefined") {
+    return "EN";
+  }
+
+  const pathLocale = window.location.pathname.match(/^\/(en|fr|es)(?:\/|$)/)?.[1]?.toUpperCase();
+
+  if (pathLocale === "FR" || pathLocale === "ES") {
+    return pathLocale;
+  }
+
+  const match = document.cookie.match(/(?:^|;\s*)googtrans=\/en\/(en|fr|es)/);
+  const locale = match?.[1]?.toUpperCase();
+
+  return locale === "FR" || locale === "ES" ? locale : "EN";
+}
+
+function withoutLocalePrefix(pathname: string) {
+  const stripped = pathname.replace(/^\/(en|fr|es)(?=\/|$)/, "");
+
+  return stripped || "/";
+}
+
+function localizedPath(pathname: string, code: keyof typeof languageCodes) {
+  const basePath = withoutLocalePrefix(pathname);
+  const locale = languageCodes[code];
+
+  return basePath === "/" ? `/${locale}` : `/${locale}${basePath}`;
+}
+
+function setTranslationLanguage(code: keyof typeof languageCodes, pathname: string) {
+  const locale = languageCodes[code];
+  const value = `/en/${locale}`;
+  const maxAge = 60 * 60 * 24 * 365;
+
+  document.cookie = `googtrans=${value}; path=/; max-age=${maxAge}; SameSite=Lax`;
+  if (window.location.hostname.includes(".")) {
+    document.cookie = `googtrans=${value}; path=/; domain=${window.location.hostname}; max-age=${maxAge}; SameSite=Lax`;
+  }
+  document.documentElement.lang = locale;
+  window.location.href = localizedPath(pathname, code);
+}
+
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -30,7 +79,16 @@ export function SiteHeader() {
     { code: "FR", label: "Francais" },
     { code: "ES", label: "Espanol" },
   ];
-  const businessActive = pathname === "/businesses" || businesses.some((business) => pathname === `/business/${business.slug}`);
+  const currentPath = withoutLocalePrefix(pathname);
+  const activeLocale = pathname.match(/^\/(en|fr|es)(?=\/|$)/)?.[1];
+  const localizedHref = (href: string) => {
+    if (!activeLocale) {
+      return href;
+    }
+
+    return href === "/" ? `/${activeLocale}` : `/${activeLocale}${href}`;
+  };
+  const businessActive = currentPath === "/businesses" || businesses.some((business) => currentPath === `/business/${business.slug}`);
 
   useEffect(() => {
     document.body.classList.toggle("menu-open", open);
@@ -54,6 +112,8 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [open]);
   useEffect(() => {
+    setLanguage(getStoredLanguage());
+
     function handlePointerDown(event: PointerEvent) {
       if (!languageRef.current?.contains(event.target as Node)) {
         setLanguageOpen(false);
@@ -68,7 +128,7 @@ export function SiteHeader() {
   return (
     <header className={cn("site-header-legacy fixed inset-x-0 top-0 z-50", scrolled ? "is-scrolled" : "is-transparent", hidden ? "is-hidden" : "")}>
       <div className="header-inner-legacy mx-auto flex items-center justify-between gap-12">
-        <Link href="/" aria-label="Bioture home" className="brand-legacy relative h-10">
+        <Link href={localizedHref("/")} aria-label="Bioture home" className="brand-legacy relative h-10">
           <Image
             src={scrolled ? "/assets/bt-green-cropped.png" : "/assets/bt-white-cropped.png"}
             alt="Bioture"
@@ -80,12 +140,12 @@ export function SiteHeader() {
         </Link>
         <nav className="desktop-nav-legacy hidden items-center gap-[38px] md:flex" aria-label="Primary navigation">
           {navItems.slice(0, 2).map((item) => {
-            const isActive = pathname === item.href;
+            const isActive = currentPath === item.href;
 
             return (
               <Link
                 key={item.href}
-                href={item.href}
+                href={localizedHref(item.href)}
                 className={cn("nav-link-legacy py-[35px] transition", isActive ? "active text-emerald-950" : "")}
               >
                 {item.label}
@@ -107,19 +167,19 @@ export function SiteHeader() {
               <ChevronDown className="size-3.5" strokeWidth={2} aria-hidden="true" />
             </button>
             <div className="business-nav-menu" role="menu">
-              <Link href="/businesses" role="menuitem" className="business-nav-overview">
+              <Link href={localizedHref("/businesses")} role="menuitem" className="business-nav-overview">
                 All Companies
               </Link>
               {businesses.map((business) => (
-                <Link key={business.slug} href={`/business/${business.slug}`} role="menuitem">
+                <Link key={business.slug} href={localizedHref(`/business/${business.slug}`)} role="menuitem">
                   {business.shortTitle}
                 </Link>
               ))}
             </div>
           </div>
           <Link
-            href="/contact?subject=general-enquiry"
-            className={cn("nav-link-legacy py-[35px] transition", pathname === "/contact" ? "active text-emerald-950" : "")}
+            href={localizedHref("/contact?subject=general-enquiry")}
+            className={cn("nav-link-legacy py-[35px] transition", currentPath === "/contact" ? "active text-emerald-950" : "")}
           >
             Contact
           </Link>
@@ -146,6 +206,7 @@ export function SiteHeader() {
                   onClick={() => {
                     setLanguage(item.code);
                     setLanguageOpen(false);
+                    setTranslationLanguage(item.code as keyof typeof languageCodes, pathname);
                   }}
                 >
                   <span>{item.label}</span>
@@ -154,7 +215,7 @@ export function SiteHeader() {
             </div>
           </div>
           <Button asChild size="sm">
-            <Link href="/contact?subject=partnership">Partner with us</Link>
+            <Link href={localizedHref("/contact?subject=partnership")}>Partner with us</Link>
           </Button>
         </div>
         <button
@@ -185,7 +246,7 @@ export function SiteHeader() {
         </div>
         <nav className="mt-12 grid gap-6">
           {navItems.slice(0, 2).map((item) => (
-            <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="text-3xl font-medium tracking-tight">
+            <Link key={item.href} href={localizedHref(item.href)} onClick={() => setOpen(false)} className="text-3xl font-medium tracking-tight">
               {item.label}
             </Link>
           ))}
@@ -201,18 +262,18 @@ export function SiteHeader() {
             </button>
             {mobileBusinessOpen ? (
               <div className="mobile-business-list">
-                <Link href="/businesses" onClick={() => setOpen(false)}>
+                <Link href={localizedHref("/businesses")} onClick={() => setOpen(false)}>
                   All Companies
                 </Link>
                 {businesses.map((business) => (
-                  <Link key={business.slug} href={`/business/${business.slug}`} onClick={() => setOpen(false)}>
+                  <Link key={business.slug} href={localizedHref(`/business/${business.slug}`)} onClick={() => setOpen(false)}>
                     {business.shortTitle}
                   </Link>
                 ))}
               </div>
             ) : null}
           </div>
-          <Link href="/contact?subject=general-enquiry" onClick={() => setOpen(false)} className="text-3xl font-medium tracking-tight">
+          <Link href={localizedHref("/contact?subject=general-enquiry")} onClick={() => setOpen(false)} className="text-3xl font-medium tracking-tight">
             Contact
           </Link>
           <div className="mobile-language">
@@ -223,7 +284,10 @@ export function SiteHeader() {
                   key={item.code}
                   type="button"
                   className={language === item.code ? "active" : ""}
-                  onClick={() => setLanguage(item.code)}
+                  onClick={() => {
+                    setLanguage(item.code);
+                    setTranslationLanguage(item.code as keyof typeof languageCodes, pathname);
+                  }}
                 >
                   {item.code}
                 </button>

@@ -38,8 +38,8 @@ export default function BusinessesPage() {
               const Icon = icons[index] ?? Building2;
 
               return (
-                <Link key={business.slug} href={`#${business.slug}`} className="business-jump-card border border-stone-200">
-                  <span className="grid size-11 place-items-center border border-stone-200 text-emerald-950">
+                <Link key={business.slug} href={`#${business.slug}`} className="business-jump-card">
+                  <span className="grid size-11 place-items-center text-emerald-950">
                     <Icon className="size-5" strokeWidth={1.8} />
                   </span>
                   <span className="business-jump-count">{business.index}</span>

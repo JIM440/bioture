@@ -32,7 +32,6 @@ export function BusinessDetailPage({ business, nextBusiness }: { business: Busin
           eyebrow={business.title}
           title={business.heroTitle}
           image={business.image}
-          copy={isRealEstate ? "Luxury residences, considered developments and property opportunities shaped around location, design and lasting value." : undefined}
         />
         {showDefaultProfile ? (
           <section className={isRealEstate ? "section-shell real-estate-profile-section" : "section-shell"}>
