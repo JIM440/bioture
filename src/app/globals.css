@@ -166,6 +166,21 @@ a[role="button"] {
   box-shadow: 0 34px 90px rgba(0, 0, 0, 0.18);
 }
 
+.home-company-feature-card {
+  height: 620px !important;
+  min-height: 620px !important;
+}
+
+.home-company-feature-overlay {
+  background:
+    linear-gradient(0deg, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.5) 56%, rgba(0, 0, 0, 0.46));
+}
+
+.sustainability-card-title {
+  font-size: 18px !important;
+  line-height: 1.18 !important;
+}
+
 .footer-label {
   margin-bottom: 16px;
   font-family: var(--font-aa-sans);
@@ -1156,6 +1171,11 @@ p {
 
   .business-card {
     min-height: 420px;
+  }
+
+  .home-company-feature-card {
+    height: 560px !important;
+    min-height: 560px !important;
   }
 
   .business-jump-grid {

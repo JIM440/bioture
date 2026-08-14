@@ -355,7 +355,7 @@ export function RealEstateShowcase({ platform: _platform }: { platform?: Busines
             </article>
           </div>
 
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
+          <div className="mt-12 grid grid-cols-3 gap-4 lg:grid-cols-8">
             {partnerLogos.slice(0, 6).map((partner) => (
               <div key={partner.name} className="flex h-[105px] items-center justify-center">
                 <span

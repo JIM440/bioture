@@ -137,7 +137,7 @@ export function BusinessDetailPage({ business, nextBusiness }: { business: Busin
           <section className="partner-strip-section">
             <div className="section-shell">
               <SectionLabel index="Partners" label="Partner network" />
-              <div className="mt-8 grid gap-2 sm:grid-cols-3 lg:grid-cols-5">
+              <div className="mt-8 grid grid-cols-3 gap-2 lg:grid-cols-8">
                 {partnerLogos.map((partner) => (
                   <div key={partner.name} className="partner-logo-card" title={partner.name} aria-label={partner.name}>
                     <div

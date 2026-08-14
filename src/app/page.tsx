@@ -126,7 +126,7 @@ export default function Home() {
         <section className="bg-white px-5 py-16 md:px-8 md:py-24">
           <div className="mx-auto max-w-[1500px]">
             <SectionLabel index="02" label="Partners" />
-            <div className="mt-8 grid gap-2 sm:grid-cols-3 lg:grid-cols-5">
+            <div className="mt-8 grid grid-cols-3 gap-2 lg:grid-cols-8">
               {partnerLogos.map((partner) => (
                 <div
                   key={partner.name}
@@ -182,7 +182,7 @@ export default function Home() {
             {sustainabilityCards.map(([index, title, copy]) => (
               <article key={title} className="border border-stone-300 bg-[#f5f6f3] p-5">
                 <span className="font-mono text-xs font-bold uppercase tracking-[0.15em] text-emerald-950">{index}</span>
-                <h3 className="mt-5 text-2xl font-bold leading-tight tracking-[-0.02em]">{title}</h3>
+                <strong className="sustainability-card-title mt-5 block font-bold tracking-[0]">{title}</strong>
                 <p className="mt-3 text-sm leading-6 text-stone-600">{copy}</p>
               </article>
             ))}

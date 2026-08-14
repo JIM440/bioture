@@ -142,7 +142,7 @@ export default function AboutPage() {
           <div className="mx-auto max-w-[1500px]">
             <SectionLabel index="07" label="Our Partnership Ecosystem" />
             <h2 className="mt-5 max-w-4xl text-[clamp(38px,5vw,74px)] font-bold leading-[1.05] tracking-[-0.04em]">Strategic relationships that help the group scale responsibly.</h2>
-            <div className="mt-8 grid gap-2 sm:grid-cols-3 lg:grid-cols-5">
+            <div className="mt-8 grid grid-cols-3 gap-2 lg:grid-cols-8">
               {partnerLogos.map((partner) => (
                 <div key={partner.name} className="partner-logo-card" title={partner.name} aria-label={partner.name}>
                   <div
